@@ -3,8 +3,8 @@
 require "dbconnect.php";
 require 'vendor/autoload.php';
 // init configuration
-$clientID = '94968952752-4c6f1dvnh9nt6mkrcn2m2859ut7hg518.apps.googleusercontent.com';
-$clientSecret = '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';
+$clientID = '91227980488-uiturn7i31iptc2tjfqrc6gj2nj0uai0.apps.googleusercontent.com';
+$clientSecret = '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';
 $redirectUri = 'http://localhost/Php_learning/profile.php';
 
 
