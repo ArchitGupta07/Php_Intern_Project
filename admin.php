@@ -21,16 +21,27 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       $res = mysqli_query($conn,$sql);
 
       header("location: admin.php ");
+}
 
-      
+else{
+  if(isset($_POST['firstsort'])){
+  $first_name = $_POST['firstsort'];
 
 
 
+  
+
+  // $sql = "Select * from profile where first_name == '$first_name'";
+  // $fetch = mysqli_query($conn, $sql); 
+  // }
+  // else{
+  //   $user = $_SESSION['username'];
+  //   $sql = "Select * from profile where username != '$user'";
+  //   $fetch = mysqli_query($conn, $sql);
+    
 
   }
-  
- 
- 
+}
 }
 
 
@@ -141,6 +152,70 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       </tbody>
     </table>
 </div>
+
+
+
+
+<!-- ----------------------fetching data by name--------------------------- -->
+  <div class="container">
+  <form action="/Php_Learning/admin.php" method="POST">
+   
+    <table class="table" id="myTable2">
+      <thead>
+        <tr>
+          <th scope="col">S.no</th>
+          <th scope="col">First_Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+      <?php      
+       if(isset($_POST['firstsort'])){
+        $first_name = $_POST['firstsort'];
+
+        echo $first_name;
+      
+      
+        
+      
+        $sql = "Select * from profile where first_name = '$first_name'";
+        $fetch = mysqli_query($conn, $sql); 
+        }
+        else{
+          $user = $_SESSION['username'];
+          $sql = "Select * from profile where username != '$user'";
+          $fetch = mysqli_query($conn, $sql);
+          
+      
+        }
+
+        while($prof1 = mysqli_fetch_assoc($fetch)){
+        echo " <tr>
+        <th scope='row'>" . $prof1['uid'] ." </th>;
+        <td>" . $prof1['first_name'] . "</td>
+        <td>" . $prof1['last_name'] . "</td>
+        <td>" . $prof1['email'] . "</td>
+        <td>" . $prof1['role'] . "</td>
+        <td>  <button class='edit' id= '".$prof1['uid']."' href='/edit'>Edit</button> </td>
+        </tr>" ;    
+      }
+      ?>     
+      </tbody>
+    </table>
+    <form action="/Php_Learning/admin.php" method="POST">
+
+    <h5>Sort By</h5>
+
+    <div class="first_name">
+                <label for="">First Name</label>
+                <input type="text" name="firstsort" id="firstsort">
+            </div>
+    </form>
+</div>
     
     
 
@@ -155,6 +230,13 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
       $(document).ready(function(){
         $('#myTable').DataTable();
+      });
+
+    </script>
+    <script>
+
+      $(document).ready(function(){
+        $('#myTable2').DataTable();
       });
 
     </script>
