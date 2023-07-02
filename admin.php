@@ -177,7 +177,7 @@ else{
       </thead>
       <tbody>
       <?php      
-       if(isset($_POST['firstsort'])){
+       if((isset($_POST['firstsort'])) && ($_POST['firstsort']!='') && ($_POST['criteria']!='')){
 
         $criteria = $_POST['criteria'];
         $first_name = $_POST['firstsort'];
