@@ -233,13 +233,13 @@ else{
       });
 
     </script>
-    <script>
+    <!-- <script>
 
       $(document).ready(function(){
         $('#myTable2').DataTable();
       });
 
-    </script>
+    </script> -->
 
 
 
