@@ -22,6 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
+        $_SESSION['uid'] = $uid;
         $_SESSION['role'] = $role;
 
         header("location: profile.php");

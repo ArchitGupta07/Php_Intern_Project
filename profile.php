@@ -10,10 +10,15 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 }
 
 $user = $_SESSION['username'];
+$uid = $_SESSION['uid'];
 $sql = "Select * from profile where username = '$user'";
+$sql1 = "Select * from projects where creator = '$uid'";
 $data = mysqli_query($conn, $sql);
+$p_data = mysqli_query($conn, $sql1);
 
 $prof = mysqli_fetch_assoc($data);
+$proj = mysqli_fetch_assoc($p_data);
+
 
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
@@ -32,16 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
         }
         else{header("location: profile.php ");}
-
-        
-
-
-
-
-    }
-    
-   
-   
+    } 
 }
 
 
