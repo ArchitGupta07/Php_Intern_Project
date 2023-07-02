@@ -153,11 +153,14 @@ else{
     </table>
 </div>
 
-
-
+<hr>
+<br>
+<br>
+<br>
+<hr>
 
 <!-- ----------------------fetching data by name--------------------------- -->
-  <div class="container">
+  <div class="container bg-secondary border rounded">
   <form action="/Php_Learning/admin.php" method="POST">
    
     <table class="table" id="myTable2">
@@ -168,13 +171,15 @@ else{
           <th scope="col">Last Name</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
-          <th scope="col">Actions</th>
+          <!-- <th scope="col">Actions</th> -->
           
         </tr>
       </thead>
       <tbody>
       <?php      
        if(isset($_POST['firstsort'])){
+
+        $criteria = $_POST['criteria'];
         $first_name = $_POST['firstsort'];
 
         echo $first_name;
@@ -182,7 +187,7 @@ else{
       
         
       
-        $sql = "Select * from profile where first_name = '$first_name'";
+        $sql = "Select * from profile where $criteria = '$first_name'";
         $fetch = mysqli_query($conn, $sql); 
         }
         else{
@@ -200,7 +205,7 @@ else{
         <td>" . $prof1['last_name'] . "</td>
         <td>" . $prof1['email'] . "</td>
         <td>" . $prof1['role'] . "</td>
-        <td>  <button class='edit' id= '".$prof1['uid']."' href='/edit'>Edit</button> </td>
+        
         </tr>" ;    
       }
       ?>     
@@ -209,11 +214,16 @@ else{
     <form action="/Php_Learning/admin.php" method="POST">
 
     <h5>Sort By</h5>
+        <div class="criteria">
+            <label for="">Criteria</label>
+            <input type="text" name="criteria" id="criteria">
+        </div>
 
-    <div class="first_name">
-                <label for="">First Name</label>
-                <input type="text" name="firstsort" id="firstsort">
-            </div>
+        <div class="first_name">
+            <label for="">Value</label>
+            <input type="text" name="firstsort" id="firstsort">
+        </div>
+        <button type="submit" class="btn btn-primary">Sort</button>
     </form>
 </div>
     
