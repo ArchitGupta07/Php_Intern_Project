@@ -3,9 +3,12 @@
 require "dbconnect.php";
 session_start();
 // echo $_SESSION['role'];
-if(!isset($_SESSION['role']) || $_SESSION['role']=='admin'){
-    echo "Welcome Admin";
+if(!isset($_SESSION['role']) && $_SESSION['role']=='admin'){
+  echo "Welcome ".$_SESSION['username'];
     // exit;
+}
+else{
+  header("location: profile.php");
 }
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){

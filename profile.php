@@ -5,9 +5,14 @@ require "dbconnect.php";
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-    header("location: login_admin.php ");
+    header("location: index.php ");
     exit;
+
+
 }
+
+
+
 echo $_SESSION['username'];
 $user = $_SESSION['username'];
 
@@ -169,6 +174,13 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 <div class="container1">
 <div class="profile">
 <!-- <div class="image"></div> -->
+
+<?php
+if ($_SESSION['role'] == 'admin') {
+    
+    echo '<a href="./admin.php">Go to Admin Page</a>'  ;
+}
+?>
 <h2><?php echo $_SESSION['username'] ?></h2>
 <h5> <?php echo $prof['email'] ?> </h5>
 <h5><?php echo $prof['mobile_no'] ?></h5>

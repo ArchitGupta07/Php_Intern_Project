@@ -15,13 +15,15 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     $sql = "Select * from profile where username='$username' AND password = '$password' AND role = 'faculty'"; 
     $result = mysqli_query($conn,$sql);
     $num = mysqli_num_rows($result);
+    $val = mysqli_fetch_assoc($result);
     if ($num==1){
         $login = true;
 
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['role'] = $role;
+        $_SESSION['role'] = $val['role'];
+        $_SESSION['uid'] = $val['uid'];
 
         header("location: profile.php");
 
@@ -63,7 +65,7 @@ if($login){
             <div class="row">
                 <div class="col-md-6">
                     <div class="myLeftCtn"> 
-                        <form method="POST" action="/Php_learning/login_admin.php" class="myForm text-center">
+                        <form method="POST" action="/Php_learning/login_faculty.php" class="myForm text-center">
                             
                             <header>WELCOME</header>
                             <p>Sign-in by entering the information below</p>
