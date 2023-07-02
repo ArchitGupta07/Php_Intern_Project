@@ -8,16 +8,13 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("location: login_admin.php ");
     exit;
 }
-
+echo $_SESSION['username'];
 $user = $_SESSION['username'];
-$uid = $_SESSION['uid'];
-$sql = "Select * from profile where username = '$user'";
-$sql1 = "Select * from projects where creator = '$uid'";
-$data = mysqli_query($conn, $sql);
-$p_data = mysqli_query($conn, $sql1);
 
+$sql = "Select * from profile where username = '$user'";
+$data = mysqli_query($conn, $sql);
 $prof = mysqli_fetch_assoc($data);
-$proj = mysqli_fetch_assoc($p_data);
+
 
 
 
@@ -177,6 +174,21 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 <h5><?php echo $prof['mobile_no'] ?></h5>
 <h5> <?php echo $prof['role'] ?></h5>
 <h5> <?php echo $prof['uid'] ?></h5>
+<h5> Courses: - 
+<?php
+// session_start();
+
+$uid1 = $_SESSION['uid'];
+$sql1 = "Select * from projects where creator = '$uid1'";
+$p_data = mysqli_query($conn, $sql1);
+// $proj = mysqli_fetch_assoc($p_data);
+while($prod = mysqli_fetch_assoc($p_data)){
+        echo $prod['pname'] ;  
+        echo ", "  ;
+      }
+?>
+</h5>
+
 <!-- <h5>email</h5> -->
 <button class="edit" id= "<?php echo $prof['uid']; ?>" href="/edit">Edit</button>
 

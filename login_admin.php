@@ -16,14 +16,16 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     $sql = "Select * from profile where username='$username' AND password = '$password' AND role = 'admin'"; 
     $result = mysqli_query($conn,$sql);
     $num = mysqli_num_rows($result);
+    $val = mysqli_fetch_assoc($result);
     if ($num==1){
         $login = true;
 
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['uid'] = $uid;
-        $_SESSION['role'] = $role;
+        echo $val['uid'];
+        $_SESSION['uid'] = $val['uid'];
+        
 
         header("location: profile.php");
 
