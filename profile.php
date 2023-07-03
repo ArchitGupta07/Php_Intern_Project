@@ -2,6 +2,46 @@
 <?php
 
 require "dbconnect.php";
+require_once 'config.php';
+
+
+
+// authenticate code from Google OAuth Flow
+if (isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $client->setAccessToken($token['access_token']);
+  
+    // get profile info
+    $google_oauth = new Google_Service_Oauth2($client);
+    // $googleService = new Google\Service\Oauth2($client);
+    $google_account_info = $google_oauth->userinfo->get();
+    // $email =  $google_account_info->email;
+    // $name =  $google_account_info->name;
+
+    $userinfo = [
+
+        'email' => $google_account_info['email'],
+        'first_name'=> $google_account_info['givenName'],
+        'last_name'=> $google_account_info['givenName'],
+        'username' => $google_account_info['givenName'],
+        'password' => $google_account_info['givenName'],
+        'verifiedEmail' => $google_account_info['verifiedEmail'],
+        // 'email' => $google_account_info->getEmail(),
+        // 'first_name' => $google_account_info->getGivenName()
+        // 'last_name' => $google_account_info->getGivenName()
+        // 'first_name' => $google_account_info->getGivenName()
+        // 'first_name' => $google_account_info->getGivenName()
+        
+        
+       
+    ];
+    $sql2 = "Select * from profile where emmail = '{$userinfo['email']}'"; 
+    $res2 = mysqli_query($conn,$sql2);
+    
+    
+  
+    // now you can use this profile info to create account in your website and make user logged in.
+  } 
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
@@ -10,6 +50,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 
 
 }
+
 
 
 
@@ -178,7 +219,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 <?php
 if ($_SESSION['role'] == 'admin') {
     
-    echo '<a href="./admin.php">Go to Admin Page</a>'  ;
+    echo '<a href="./admin.php">Go to Admin Page</a>' ;
 }
 ?>
 <h2><?php echo $_SESSION['username'] ?></h2>

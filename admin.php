@@ -3,13 +3,15 @@
 require "dbconnect.php";
 session_start();
 // echo $_SESSION['role'];
-if(!isset($_SESSION['role']) && $_SESSION['role']=='admin'){
-  echo "Welcome ".$_SESSION['username'];
+
+if(!isset($_SESSION['role']) || $_SESSION['role']!='admin'){
+  // echo "Welcome ".$_SESSION['username'];
+  header("location: profile.php");
     // exit;
 }
-else{
-  header("location: profile.php");
-}
+// else{
+//   header("location: profile.php");
+// }
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
   if(isset($_POST['uidEdit'])){
