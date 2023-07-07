@@ -30,7 +30,10 @@
             <th scope="col">Session No.</th>
             <th scope="col">Title</th>
             <th scope="col">Mode</th>
+            <div style="display: grid;"><div><th scope="col">Course Material</th></div>
+            <div><th scope="col">Course Material</th>
             <th scope="col">Course Material</th>
+            <th scope="col">Course Material</th></div></div>
             <!-- <th scope="col">Handle</th> -->
             </tr>
         </thead>
