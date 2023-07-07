@@ -1,6 +1,6 @@
 <?php
-echo $_GET['course']
-
+require "dbconnect.php";
+echo $_GET['course'];
 ?>
 
 
@@ -45,24 +45,35 @@ echo $_GET['course']
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            </tr>
+        <?php
+        // require dbconnect.php;
+
+        
+
+            $course = $_GET['course'];
+         
+
+            $sql = "Select * from courses where title = '$course'";
+            $data = mysqli_query($conn, $sql);
+
+            while($prof = mysqli_fetch_assoc($data)){
+                echo " <tr>
+                <th scope='row'>" . $prof['cid'] ." </th>;
+                <td>" . $prof['title'] . "</td>
+                <td>" . $prof['mode'] . "</td>
+                <td>" . $prof['creator'] . "</td>
+                
+                
+                </tr>" ;
+
+
+
+  
+            }
+
+
+
+        ?>
         </tbody>
     </table>
       </div>
