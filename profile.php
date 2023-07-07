@@ -232,11 +232,15 @@ if ($_SESSION['role'] == 'admin') {
 // session_start();
 
 $uid1 = $_SESSION['uid'];
-$sql1 = "Select * from projects where creator = '$uid1'";
+$use = $_SESSION['username'];
+$sql1 = "Select * from courses where creator = '$use'";
 $p_data = mysqli_query($conn, $sql1);
 // $proj = mysqli_fetch_assoc($p_data);
 while($prod = mysqli_fetch_assoc($p_data)){
-        echo $prod['pname'] ;  
+        echo $prod['title'] ; 
+        // echo '<a href="./course.php?name=$prod['creator']">' . $prod['title'] . '</a>';
+        echo '<a href="./course.php?course=' . $prod['title'] . '">' . $prod['title'] . '</a>';
+
         echo ", "  ;
       }
 ?>
