@@ -61,7 +61,8 @@ echo $_GET['course'];
                 <th scope='row'>" . $prof['cid'] ." </th>;
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
-                <td>" . $prof['creator'] . "</td>
+                
+                <td>  <button class='edit' id= '".$prof['uid']."' href='/edit'>Download Pdf</button> </td>
                 
                 
                 </tr>" ;
