@@ -20,11 +20,24 @@ echo $_GET['course'];
   <body>
 
   <div id="accordion">
-  <div class="card">
+  <?php
+        // require dbconnect.php;
+
+        
+
+            $course_code = $_GET['course'];
+            
+         
+
+            $c_name = "Select distinct(module) from courses where course_code = '$course_code'";
+            $c_data = mysqli_query($conn, $c_name);
+            while($c = mysqli_fetch_assoc($c_data)){     
+  echo '<div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
+        Module ' . $c['module'] . '
+
         </button>
       </h5>
     </div>
@@ -44,21 +57,21 @@ echo $_GET['course'];
             <!-- <th scope="col">Handle</th> -->
             </tr>
         </thead>
-        <tbody>
-        <?php
+        <tbody>';
+        
         // require dbconnect.php;
 
         
 
-            $course = $_GET['course'];
+            $course_code = $_GET['course'];
          
 
-            $sql = "Select * from courses where title = '$course'";
+            $sql = "SELECT * FROM courses WHERE module = '{$c['module']}' AND course_code = '$course_code' ";
             $data = mysqli_query($conn, $sql);
 
             while($prof = mysqli_fetch_assoc($data)){
                 echo " <tr>
-                <th scope='row'>" . $prof['cid'] ." </th>;
+                <th scope='row'>" . $prof['session_no'] ." </th>;
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
                 
@@ -74,12 +87,14 @@ echo $_GET['course'];
 
 
 
-        ?>
+        echo '
         </tbody>
     </table>
       </div>
     </div>
-  </div>
+  </div>';
+          }
+  ?>
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
