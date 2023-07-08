@@ -35,14 +35,14 @@ echo $_GET['course'];
   echo '<div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse' . $c['module'] . '" aria-expanded="false" aria-controls="collapse' . $c['module'] . '">
         Module ' . $c['module'] . '
 
         </button>
       </h5>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="collapse' . $c['module'] . '" class="collapse" aria-labelledby="heading' . $c['module'] . '" data-parent="#accordion">
       <div class="card-body">
       <table class="table table-striped table-dark" id="mytable">
         <thead>
@@ -75,7 +75,7 @@ echo $_GET['course'];
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
                 
-                <td>  <button class='edit' id= '".$prof['cid']."' href='/edit'>Download Pdf</button> </td>
+                <td>  <button class='edit' id= '".$prof['cid']."' >Download Pdf</button> </td>
                 
                 
                 </tr>" ;
@@ -95,7 +95,7 @@ echo $_GET['course'];
   </div>';
           }
   ?>
-  <div class="card">
+  <!-- <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -122,7 +122,7 @@ echo $_GET['course'];
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
     
 
