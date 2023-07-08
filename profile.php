@@ -66,12 +66,12 @@ $prof = mysqli_fetch_assoc($data);
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     if(isset($_POST['uidEdit'])){
-        echo 'yes';
+        echo 'yes1';
         $username =$_POST['usernameEdit'];  
         $uid =$_POST['uidEdit'];  
         $email =$_POST['emailEdit'];
         $mobile_no =$_POST['mobileEdit'];
-
+        
         $sql = "UPDATE `profile` SET `username` = '$username' , `email` = '$email' , `mobile_no` = '$mobile_no' WHERE `profile`.`uid` = $uid";
         $res = mysqli_query($conn,$sql);
 
@@ -80,7 +80,26 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
         }
         else{header("location: profile.php ");}
-    } 
+    }
+    elseif (isset($_POST['course_upload'])) {
+        echo 'yes2';
+        
+        $course_code =$_POST['course_code'];  
+        $title =$_POST['title'];  
+        $session_no =$_POST['session'];
+        $mode =$_POST['mode'];
+        $module =$_POST['module'];
+        $file_name = $_FILES['myfile']['name'];
+        $file_tmp_name = $_FILES['myfile']['tmp_name'];
+
+        move_uploaded_file($file_tmp_name,"files/material/".$file_name);
+
+
+        // $sql = "UPDATE `profile` SET `username` = '$username' , `email` = '$email' , `mobile_no` = '$mobile_no' WHERE `profile`.`uid` = $uid";
+        $sql = "INSERT INTO `courses` (`course_code`, `module`, `session_no`, `title`, `creator`, `mode`, `date`, `down_pdf`) VALUES ('$course_code', '$module', '$session_no', '$title', '$user', '$mode', current_timestamp(), '$file_name')";
+        $res = mysqli_query($conn,$sql);
+
+      }
 }
 
 
@@ -255,30 +274,30 @@ while($prod = mysqli_fetch_assoc($p_data)){
 <div class="container1 bg-secondary border rounded p-3" style="width: 300px; margin:auto">
 <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data"  >
 <div class="mb-3">
-  <label for="formGroupExampleInput" class="form-label">Example label</label>
-  <input type="text" class="form-control" id="course_code" name="course_code" placeholder="Example input placeholder">
+  <label for="formGroupExampleInput" class="form-label">Course Code</label>
+  <input type="text" class="form-control" id="course_code" name="course_code" placeholder="">
 </div>
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Another label</label>
-  <input type="text" class="form-control" id="module" name="module" placeholder="Another input placeholder">
+  <label for="formGroupExampleInput2" class="form-label">Module</label>
+  <input type="text" class="form-control" id="module" name="module" placeholder="">
 </div>
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Another label</label>
-  <input type="text" class="form-control" id="session" name="session" placeholder="Another input placeholder">
+  <label for="formGroupExampleInput2" class="form-label">Session No</label>
+  <input type="text" class="form-control" id="session" name="session" placeholder="">
 </div>
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Another label</label>
-  <input type="text" class="form-control" id="title" name="title" placeholder="Another input placeholder">
+  <label for="formGroupExampleInput2" class="form-label">Title</label>
+  <input type="text" class="form-control" id="title" name="title" placeholder="">
 </div>
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Another label</label>
-  <input type="text" class="form-control" id="mode"  name="mode" placeholder="Another input placeholder">
+  <label for="formGroupExampleInput2" class="form-label">Mode</label>
+  <input type="text" class="form-control" id="mode"  name="mode" placeholder="">
 </div>
 <div>
     <input type="file" name = 'myfile'>
     
 </div>
-<button type="submit" name="course_upload" id="course"  >Submit</button>
+<button type="submit" name="course_upload" id="course_upload"  >Submit</button>
 </form>
 
 
