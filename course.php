@@ -62,7 +62,7 @@ echo $_GET['course'];
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
                 
-                <td>  <button class='edit' id= '".$prof['uid']."' href='/edit'>Download Pdf</button> </td>
+                <td>  <button class='edit' id= '".$prof['cid']."' href='/edit'>Download Pdf</button> </td>
                 
                 
                 </tr>" ;

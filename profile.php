@@ -237,7 +237,7 @@ $sql1 = "Select * from courses where creator = '$use'";
 $p_data = mysqli_query($conn, $sql1);
 // $proj = mysqli_fetch_assoc($p_data);
 while($prod = mysqli_fetch_assoc($p_data)){
-        echo $prod['title'] ; 
+        // echo $prod['title'] ; 
         // echo '<a href="./course.php?name=$prod['creator']">' . $prod['title'] . '</a>';
         echo '<a href="./course.php?course=' . $prod['title'] . '">' . $prod['title'] . '</a>';
 
@@ -250,6 +250,38 @@ while($prod = mysqli_fetch_assoc($p_data)){
 <button class="edit" id= "<?php echo $prof['uid']; ?>" href="/edit">Edit</button>
 
 </div>
+</div>
+
+<div class="container1 bg-secondary border rounded p-3" style="width: 300px; margin:auto">
+<form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data"  >
+<div class="mb-3">
+  <label for="formGroupExampleInput" class="form-label">Example label</label>
+  <input type="text" class="form-control" id="course_code" name="course_code" placeholder="Example input placeholder">
+</div>
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Another label</label>
+  <input type="text" class="form-control" id="module" name="module" placeholder="Another input placeholder">
+</div>
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Another label</label>
+  <input type="text" class="form-control" id="session" name="session" placeholder="Another input placeholder">
+</div>
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Another label</label>
+  <input type="text" class="form-control" id="title" name="title" placeholder="Another input placeholder">
+</div>
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Another label</label>
+  <input type="text" class="form-control" id="mode"  name="mode" placeholder="Another input placeholder">
+</div>
+<div>
+    <input type="file" name = 'myfile'>
+    
+</div>
+<button type="submit" name="course_upload" id="course"  >Submit</button>
+</form>
+
+
 </div>
 
 
@@ -281,7 +313,7 @@ while($prod = mysqli_fetch_assoc($p_data)){
 </script>
 
   
-  </body>s
+  </body>
 </html>
  <!-- -------------------------------------------------------------------------------- -->
 
