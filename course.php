@@ -7,20 +7,94 @@ echo $_GET['course'];
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title></title>
-  </head>
-  <body>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title></title>
+</head>
+
+<body>
+   <!-- Modal 2 -->
+   <div class="modal fade" tabindex="-1" id="attend1" tabindex="-1" aria-labelledby="attend1Label"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="attend1Label">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/Php_Learning/courses.php" method="POST">
+            <input type="hidden" type="text" name="uidEdit" id="uidEdit">
+            <div class="username">
+              <label for="">username</label>
+              <input type="text" name="usernameEdit" id="usernameEdit">
+            </div>
+            <div class="email">
+              <label for="">email</label>
+              <input type="text" name="emailEdit" id="emailEdit">
+            </div>
+            <div class="mobile">
+              <label for="">mobile_no</label>
+              <input type="text" name="mobileEdit" id="mobileEdit">
+            </div>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal 1 -->
+  <div class="modal fade" tabindex="-1" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/Php_Learning/courses.php" method="POST">
+            <input type="hidden" type="text" name="uidEdit" id="uidEdit">
+            <div class="username">
+              <label for="">username</label>
+              <input type="text" name="usernameEdit" id="usernameEdit">
+            </div>
+            <div class="email">
+              <label for="">email</label>
+              <input type="text" name="emailEdit" id="emailEdit">
+            </div>
+            <div class="mobile">
+              <label for="">mobile_no</label>
+              <input type="text" name="mobileEdit" id="mobileEdit">
+            </div>
+            <button type="submit" class="attend btn btn-primary">Save changes</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+  <!-- -------------------modules----------------------------- -->
 
   <div id="accordion">
-  <?php
+    <?php
         // require dbconnect.php;
 
         
@@ -95,7 +169,7 @@ echo $_GET['course'];
   </div>';
           }
   ?>
-  <!-- <div class="card">
+    <!-- <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -123,13 +197,52 @@ echo $_GET['course'];
       </div>
     </div>
   </div> -->
-</div>
-    
+  </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   <!-- -------------------modal1 javascript ------------------- -->
+    <script> 
+    jQuery.noConflict();
+    edits = document.getElementsByClassName('edit');
+    Array.from(edits).forEach((element)=>{
+        element.addEventListener("click", (e)=>{
+            console.log("edit",);
+           
+            $('#editModal').modal('toggle');
+
+          
+        })
+    })
+    </script>
+   <!-- -------------------modal2 javascript ------------------- -->
+    <script> 
+    jQuery.noConflict();
+    attends = document.getElementsByClassName('attend');
+    Array.from(attends).forEach((element)=>{
+        element.addEventListener("click", (e)=>{
+            console.log("edit",);
+           
+            $('#attend1').modal('toggle');
+
+          
+        })
+    })
+    </script>
+
+
+</body>
+
 </html>
