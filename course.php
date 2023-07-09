@@ -47,17 +47,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       // $query3 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";     
       // $result3 = mysqli_query($conn, $query3); 
       if($attendance!=1) {
-
-        files\material\Archit(1).pdf
         
-        $query5 = "Select * from courses where cid = '$cid' ";
+        $query5 = "SELECT * FROM courses WHERE cid = '$cid'";
         $result5 = mysqli_query($conn, $query5);
         $core = mysqli_fetch_assoc($result5);
 
         echo $core['down_pdf'];
 
 
-        $file = "files/material/".$core['down_pdf']; 
+        // $file = "files/material/".$core['down_pdf']; 
+        $file = "check.txt"; 
 
         echo $file;
 
@@ -66,14 +65,15 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="' . basename($file) . '"');
 
+        echo basename($file);
+
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
         // header('Content-Length: ' . filesize($file));
 
-        ob_clean();
-         flush();
+        
 
         readfile($file);
         exit; 
