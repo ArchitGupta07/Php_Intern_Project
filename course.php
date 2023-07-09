@@ -1,12 +1,27 @@
 <?php
 require "dbconnect.php";
 echo $_GET['course'];
+session_start();
 
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
   echo 'yes';
   if(isset($_POST['attendance'])){
     echo 'yes1';
+    $attendance = $_POST['attendance'];  
+    $cid = $_POST['cid'];  
+    echo $cid;
+    $reason = $_POST['reason']; 
+
+    if($_POST['attendance']==1) {
+      $sql = "Select * from profile where username = '$user'";
+      $data = mysqli_query($conn, $sql);
+      $prof = mysqli_fetch_assoc($data);
+    }
+
+
+    
+    
   }}
 ?>
 
@@ -52,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
               <label for="">mobile_no</label>
               <input type="text" name="mobileEdit" id="mobileEdit">
             </div> -->
-            <button type="submit" class="btn btn-primary" data-dismiss="modal" >Save changes</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id= "<?php echo $_SESSION['uid']; ?>" >Save changes</button>
           <!-- </form> -->
         </div>
         <div class="modal-footer">
@@ -84,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
             </div>
            
             <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
-          <!-- </form> -->
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -98,6 +113,9 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
   <!-- -------------------modules----------------------------- -->
 
   <div id="accordion">
+    
+    
+    
     <?php
         // require dbconnect.php;
 
@@ -153,7 +171,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
                 
-                <td>  <button id='myButton1' class='edit'  >Download Pdf</button> </td>
+                <td>  <button id='" . $prof['cid'] . "' class='edit'>Download Pdf</button> </td>
                 
                 
                 </tr>" ;
@@ -217,7 +235,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
+    <!-- <script>
       document.getElementById('myButton').addEventListener('click', function(event) {
     event.preventDefault();
   });
@@ -227,7 +245,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       document.getElementById('myButton1').addEventListener('click', function(event) {
     event.preventDefault();
   });
-    </script>
+    </script> -->
 
    <!-- -------------------modal1 javascript ------------------- -->
     <script> 
@@ -237,8 +255,43 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         element.addEventListener("click", (e)=>{
             console.log("edit",);
             
+            var ex = e.target.id;
+
            
             $('#editModal').modal('toggle');
+
+            attends = document.getElementsByClassName('attend');
+            Array.from(attends).forEach((element)=>{
+                element.addEventListener("click", (e)=>{
+                    console.log("edit1",);
+                    $('#attend1').modal('toggle');
+                      // Get form data
+                    var pres = $('#present').val();
+                    var res = $('#reason').val();
+                    
+                    console.log(ex);
+
+        // Send an AJAX request to the server
+                    jQuery.ajax({
+                    url: './course.php?course=101',
+                    type: 'POST',
+                    data: {attendance:pres, reason:res, cid:ex},
+                    success: function(data) {
+                      // Handle the response from the server
+                      console.log('data');
+                      console.log(data);
+                    }
+                  });
+
+                    // Prevent the default form submission
+                    return false;
+                
+           
+           
+
+          
+        })
+    })
 
           
         })
@@ -249,48 +302,38 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
     <script> 
     jQuery.noConflict();
-    attends = document.getElementsByClassName('attend');
-    Array.from(attends).forEach((element)=>{
-        element.addEventListener("click", (e)=>{
-            console.log("edit1",);
-            $('#attend1').modal('toggle');
-               // Get form data
-            var formData = $('#myForm').serialize();
+//     attends = document.getElementsByClassName('attend');
+//     Array.from(attends).forEach((element)=>{
+//         element.addEventListener("click", (e)=>{
+//             console.log("edit1",);
+//             $('#attend1').modal('toggle');
+//                // Get form data
+//             var pres = $('#present').val();
+//             var res = $('#reason').val();
+//             var ex = e.target.id;
+//             console.log(ex);
 
-// Send an AJAX request to the server
-              jQuery.ajax({
-              url: './course.php?course=101',
-              type: 'POST',
-              data: formData,
-              success: function(data) {
-                // Handle the response from the server
-                console.log('data');
-                console.log(data);
-              }
-            });
+// // Send an AJAX request to the server
+//             jQuery.ajax({
+//             url: './course.php?course=101',
+//             type: 'POST',
+//             data: {attendance:pres, reason:res, cid:ex},
+//             success: function(data) {
+//               // Handle the response from the server
+//               console.log('data');
+//               console.log(data);
+//             }
+//           });
 
-            // Prevent the default form submission
-            return false;
-            // console.log("edit",e.target.parentNode.parentNode);
-            // tr = e.target.parentNode.parentNode;
-            // first_name = tr.getElementsByTagName("td")[0].innerText;
-            // last_name = tr.getElementsByTagName("td")[1].innerText;
-            // email = tr.getElementsByTagName("td")[2].innerText;
-            // role = tr.getElementsByTagName("td")[3].innerText;
-            // console.log(first_name,last_name,email,role)
-
-            // firstEdit.value = first_name;
-            // lastEdit.value = last_name;
-            // emailEdit.value = email;
-            // roleEdit.value = role;
-            // uidEdit.value  = e.target.id;
-            // console.log(e.target.id)
+//             // Prevent the default form submission
+//             return false;
+         
            
            
 
           
-        })
-    })
+//         })
+//     })
     </script>
 
 
