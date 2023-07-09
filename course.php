@@ -4,8 +4,9 @@ echo $_GET['course'];
 
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
-  if(isset($_POST['uidEdit'])){
-    echo 'yes';
+  echo 'yes';
+  if(isset($_POST['attendance'])){
+    echo 'yes1';
   }}
 ?>
 
@@ -51,11 +52,11 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
               <label for="">mobile_no</label>
               <input type="text" name="mobileEdit" id="mobileEdit">
             </div> -->
-            <button type="submit" class="btn btn-primary" >Save changes</button>
-          </form>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" >Save changes</button>
+          <!-- </form> -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
         </div>
       </div>
@@ -71,16 +72,16 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- <form action="./course.php?course=<?php echo $_GET['course']?> " method="POST"> -->
-            <!-- <input type="hidden" type="text" name="uidEdit" id="uidEdit"> -->
-            <!-- <div class="present">
+          <form action="./course.php?course=<?php echo $_GET['course'];?> " method="POST">
+            <!-- <input type="hidden" type="text" name="attendance" id="attendance"> -->
+            <div class="present">
               <label for="">Attendance</label>
               <input type="text" name="present" id="present">
             </div>
             <div class="reason">
               <label for="">Reason for absent</label>
               <input type="text" name="reason" id="reason">
-            </div> -->
+            </div>
            
             <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
           <!-- </form> -->
@@ -112,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
   echo '<div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse' . $c['module'] . '" aria-expanded="false" aria-controls="collapse' . $c['module'] . '">
+        <button id="myButton" class="btn btn-link" data-toggle="collapse" data-target="#collapse' . $c['module'] . '" aria-expanded="false" aria-controls="collapse' . $c['module'] . '">
         Module ' . $c['module'] . '
 
         </button>
@@ -152,7 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
                 
-                <td>  <button class='edit' id= '".$prof['cid']."' >Download Pdf</button> </td>
+                <td>  <button id='myButton1' class='edit'  >Download Pdf</button> </td>
                 
                 
                 </tr>" ;
@@ -216,6 +217,18 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+      document.getElementById('myButton').addEventListener('click', function(event) {
+    event.preventDefault();
+  });
+    </script>
+
+    <script>
+      document.getElementById('myButton1').addEventListener('click', function(event) {
+    event.preventDefault();
+  });
+    </script>
+
    <!-- -------------------modal1 javascript ------------------- -->
     <script> 
     jQuery.noConflict();
@@ -223,6 +236,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     Array.from(edits).forEach((element)=>{
         element.addEventListener("click", (e)=>{
             console.log("edit",);
+            
            
             $('#editModal').modal('toggle');
 
@@ -231,28 +245,48 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     })
     </script>
    <!-- -------------------modal2 javascript ------------------- -->
+   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
     <script> 
     jQuery.noConflict();
     attends = document.getElementsByClassName('attend');
     Array.from(attends).forEach((element)=>{
         element.addEventListener("click", (e)=>{
-            console.log("edit",);
-            console.log("edit",e.target.parentNode.parentNode);
-            tr = e.target.parentNode.parentNode;
-            first_name = tr.getElementsByTagName("td")[0].innerText;
-            last_name = tr.getElementsByTagName("td")[1].innerText;
-            email = tr.getElementsByTagName("td")[2].innerText;
-            role = tr.getElementsByTagName("td")[3].innerText;
-            console.log(first_name,last_name,email,role)
-
-            firstEdit.value = first_name;
-            lastEdit.value = last_name;
-            emailEdit.value = email;
-            roleEdit.value = role;
-            uidEdit.value  = e.target.id;
-            console.log(e.target.id)
-           
+            console.log("edit1",);
             $('#attend1').modal('toggle');
+               // Get form data
+            var formData = $('#myForm').serialize();
+
+// Send an AJAX request to the server
+              jQuery.ajax({
+              url: './course.php?course=101',
+              type: 'POST',
+              data: formData,
+              success: function(data) {
+                // Handle the response from the server
+                console.log('data');
+                console.log(data);
+              }
+            });
+
+            // Prevent the default form submission
+            return false;
+            // console.log("edit",e.target.parentNode.parentNode);
+            // tr = e.target.parentNode.parentNode;
+            // first_name = tr.getElementsByTagName("td")[0].innerText;
+            // last_name = tr.getElementsByTagName("td")[1].innerText;
+            // email = tr.getElementsByTagName("td")[2].innerText;
+            // role = tr.getElementsByTagName("td")[3].innerText;
+            // console.log(first_name,last_name,email,role)
+
+            // firstEdit.value = first_name;
+            // lastEdit.value = last_name;
+            // emailEdit.value = email;
+            // roleEdit.value = role;
+            // uidEdit.value  = e.target.id;
+            // console.log(e.target.id)
+           
+           
 
           
         })
