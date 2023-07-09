@@ -1,3 +1,22 @@
+<!--  -->
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title></title>
+</head>
+
+<body>
 <?php
 require "dbconnect.php";
 echo $_GET['course'];
@@ -51,24 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   }
 }
 ?>
-
-
-
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <title></title>
-</head>
-
-<body>
   <!-- Modal 2 -->
   <div class="modal fade" tabindex="-1" id="attend1" tabindex="-1" aria-labelledby="attend1Label" aria-hidden="true">
     <div class="modal-dialog">
@@ -190,16 +191,22 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
       $course_code = $_GET['course'];
+      $user = $_SESSION['uid'];
 
 
       $sql = "SELECT * FROM courses WHERE module = '{$c['module']}' AND course_code = '$course_code' ";
       $data = mysqli_query($conn, $sql);
 
+      
+
       while ($prof = mysqli_fetch_assoc($data)) {
+        $check = "SELECT * FROM attendance WHERE uid = '$user' AND cid = '" . $prof['cid'] . "'";
         echo " <tr>
                 <th scope='row'>" . $prof['session_no'] . " </th>;
                 <td>" . $prof['title'] . "</td>
                 <td>" . $prof['mode'] . "</td>
+
+                
                 
                 <td>  <button id='" . $prof['cid'] . "' class='edit'>Download Pdf</button> </td>
                 
