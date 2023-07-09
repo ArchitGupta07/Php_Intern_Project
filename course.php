@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     $query1 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";
     $result1 = mysqli_query($conn, $query1);
+    
 
     if (mysqli_num_rows($result1) == 0) {
       // The query result is empty
@@ -45,11 +46,43 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $result2 = mysqli_query($conn, $query2);
       // $query3 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";     
       // $result3 = mysqli_query($conn, $query3); 
-      // if($_POST['attendance']==1) {
-      //   $sql = "Select * from profile where username = '$user'";
-      //   $data = mysqli_query($conn, $sql);
-      //   $prof = mysqli_fetch_assoc($data);
-      // }
+      if($attendance!=1) {
+
+        files\material\Archit(1).pdf
+        
+        $query5 = "Select * from courses where cid = '$cid' ";
+        $result5 = mysqli_query($conn, $query5);
+        $core = mysqli_fetch_assoc($result5);
+
+        echo $core['down_pdf'];
+
+
+        $file = "files/material/".$core['down_pdf']; 
+
+        echo $file;
+
+        header('Content-Description: File Transfer');
+
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        // header('Content-Length: ' . filesize($file));
+
+        ob_clean();
+         flush();
+
+        readfile($file);
+        exit; 
+      }
+
+
+     
+
+
     } else {
       // The query result is not empty
       echo 'Query result is not empty.';
