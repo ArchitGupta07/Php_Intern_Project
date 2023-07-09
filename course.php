@@ -71,16 +71,16 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/Php_Learning/courses.php" method="POST">
+          <!-- <form action="./course.php?course=<?php echo $_GET['course']?> " method="POST"> -->
             <!-- <input type="hidden" type="text" name="uidEdit" id="uidEdit"> -->
-            <div class="present">
+            <!-- <div class="present">
               <label for="">Attendance</label>
               <input type="text" name="present" id="present">
             </div>
             <div class="reason">
               <label for="">Reason for absent</label>
               <input type="text" name="reason" id="reason">
-            </div>
+            </div> -->
            
             <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
           <!-- </form> -->
