@@ -3,21 +3,43 @@ require "dbconnect.php";
 echo $_GET['course'];
 session_start();
 
+$user=$_SESSION['uid'];
+echo $user;
+
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
   echo 'yes';
   if(isset($_POST['attendance'])){
     echo 'yes1';
     $attendance = $_POST['attendance'];  
-    $cid = $_POST['cid'];  
-    echo $cid;
+    $cid = $_POST['cid'];      
     $reason = $_POST['reason']; 
 
-    if($_POST['attendance']==1) {
-      $sql = "Select * from profile where username = '$user'";
-      $data = mysqli_query($conn, $sql);
-      $prof = mysqli_fetch_assoc($data);
+
+    $query1 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";
+    $result1 = mysqli_query($conn, $query1);
+
+    if (mysqli_num_rows($result1) == 0) {
+      // The query result is empty
+      echo 'Query result is empty.';
+      $query2 = "INSERT INTO `attendance` (`cid`, `student_id`, `attended`, `reason`) VALUES ('$cid', '$user', '$attendance', '$reason')";
+      $result2 = mysqli_query($conn, $query2);
+      // $query3 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";
+      
+      // $result3 = mysqli_query($conn, $query3);
+
+ 
+      // if($_POST['attendance']==1) {
+      //   $sql = "Select * from profile where username = '$user'";
+      //   $data = mysqli_query($conn, $sql);
+      //   $prof = mysqli_fetch_assoc($data);
+      // }
+    } else {
+      // The query result is not empty
+      echo 'Query result is not empty.';
     }
+
+    
 
 
     
@@ -45,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 <body>
    <!-- Modal 2 -->
    <div class="modal fade"   tabindex="-1" id="attend1" tabindex="-1" aria-labelledby="attend1Label"
-    aria-hidden="true">
+    aria-hidden="true"  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -84,7 +106,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="editModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="./course.php?course=<?php echo $_GET['course'];?> " method="POST">
@@ -249,43 +271,46 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
    <!-- -------------------modal1 javascript ------------------- -->
     <script> 
-    jQuery.noConflict();
-    edits = document.getElementsByClassName('edit');
-    Array.from(edits).forEach((element)=>{
-        element.addEventListener("click", (e)=>{
-            console.log("edit",);
-            
-            var ex = e.target.id;
+   jQuery.noConflict();
+edits = document.getElementsByClassName('edit');
+Array.from(edits).forEach((element) => {
+  element.addEventListener("click", (e) => {
+    console.log("edit");
 
-           
-            $('#editModal').modal('toggle');
+    var ex = e.target.id;
 
-            attends = document.getElementsByClassName('attend');
-            Array.from(attends).forEach((element)=>{
-                element.addEventListener("click", (e)=>{
-                    console.log("edit1",);
-                    $('#attend1').modal('toggle');
-                      // Get form data
-                    var pres = $('#present').val();
-                    var res = $('#reason').val();
-                    
-                    console.log(ex);
+    $('#editModal').modal('toggle');
+
+    attends = document.getElementsByClassName('attend');
+    Array.from(attends).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        console.log("edit1");
+
+        // Get form data
+        var pres = $('#present').val();
+        var res = $('#reason').val();
+
+        console.log(pres);
 
         // Send an AJAX request to the server
-                    jQuery.ajax({
-                    url: './course.php?course=101',
-                    type: 'POST',
-                    data: {attendance:pres, reason:res, cid:ex},
-                    success: function(data) {
-                      // Handle the response from the server
-                      console.log('data');
-                      console.log(data);
-                    }
-                  });
+        jQuery.ajax({
+          url: './course.php?course=101',
+          type: 'POST',
+          data: { attendance: pres, reason: res, cid: ex },
+          success: function(data) {
+            // Handle the response from the server
+            console.log('data');
+            console.log(data);
+          }
+        });
 
-                    // Prevent the default form submission
-                    return false;
-                
+          if( pres!=1){
+          // Open the modal
+          $('#attend1').modal('toggle');}
+        
+
+        // Prevent the default form submission
+        return false;
            
            
 
