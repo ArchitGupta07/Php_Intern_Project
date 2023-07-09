@@ -35,14 +35,49 @@ if (isset($_GET['code'])) {
         
        
     ];
-    $sql2 = "Select * from profile where emmail = '{$userinfo['email']}'"; 
+    $sql2 = "Select * from profile where email = '{$userinfo['email']}'"; 
     $res2 = mysqli_query($conn,$sql2);
+
+    if (mysqli_num_rows($res2)>0){
+      $log = mysqli_fetch_assoc($res2);
+      
+      $login = true;
+
+      session_start();
+      $_SESSION['loggedin'] = true;
+      $_SESSION['username'] = $log['username'];
+      // echo $val['uid'];
+      $_SESSION['uid'] = $log['uid'];
+      $_SESSION['role'] = $log['role'];
+
+
+      
+    }else{
+
+      $sql_g = "INSERT INTO `profile` ( `first_name`, `last_name`, `username`, `email`, `password`, `location`) VALUES ( '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['username']}', '{$userinfo['email']}', '{$userinfo['password']}', 'India')";
+      $res_g = mysqli_query($conn,$sql_g);
+
+      $sql2 = "Select * from profile where email = '{$userinfo['email']}'"; 
+
+      $res2 = mysqli_query($conn,$sql2);
+      $log = mysqli_fetch_assoc($res2);
+      
+      $login = true;
+
+      session_start();
+      $_SESSION['loggedin'] = true;
+      $_SESSION['username'] = $log['username'];
+      // echo $val['uid'];
+      $_SESSION['uid'] = $log['uid'];
+      $_SESSION['role'] = $log['role'];
+    }
     
     
   
     // now you can use this profile info to create account in your website and make user logged in.
-  } 
+  }else{
 session_start();
+  }
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("location: index.php ");
