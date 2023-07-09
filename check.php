@@ -1,11 +1,13 @@
 <?php
 require "dbconnect.php";
-// echo $_GET['course'];
+echo $_GET['course'];
 session_start();
+
+$c = $_GET['course'];
 
 $user = $_SESSION['uid'];
 echo $user;
-$query5 = "Select * from courses where cid = '4' ";
+$query5 = "Select * from courses where cid = $c ";
 $result5 = mysqli_query($conn, $query5);
 $core = mysqli_fetch_assoc($result5);
 
@@ -31,11 +33,11 @@ header('Content-Length: ' . filesize($file));
 
 echo "  ";
 
-echo filesize($file, true);
+echo filesize($file);
 
 
 
-readfile($file);
+readfile($file, true);
 exit; 
 
 ?>

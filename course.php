@@ -29,6 +29,7 @@ echo $user;
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   echo 'yes';
   if (isset($_POST['attendance'])) {
+    
     echo 'yes1';
     $attendance = $_POST['attendance'];
     $cid = $_POST['cid'];
@@ -37,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     $query1 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";
     $result1 = mysqli_query($conn, $query1);
+
+    
     
 
     if (mysqli_num_rows($result1) == 0) {
@@ -46,41 +49,43 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $result2 = mysqli_query($conn, $query2);
       // $query3 = "Select * from attendance where student_id = '$user' AND cid = '$cid' ";     
       // $result3 = mysqli_query($conn, $query3); 
-      if($attendance!=1) {
-        
+      if($attendance!=1) {     
         $query5 = "SELECT * FROM courses WHERE cid = '$cid'";
         $result5 = mysqli_query($conn, $query5);
         $core = mysqli_fetch_assoc($result5);
 
         echo $core['down_pdf'];
 
-        header("location: check.php");
-        // $file = "files/material/".$core['down_pdf']; 
-        // // $file = "check.txt"; 
+       
+        $file = "files/material/".$core['down_pdf']; 
+        // $file = "check.txt"; 
 
-        // echo $file;
+        echo $file;
 
-        // header('Content-Description: File Transfer');
+        header('Content-Description: File Transfer');
 
-        // header('Content-Type: application/octet-stream');
-        // header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . basename($file) . '"');
 
-        // echo basename($file);
+        echo basename($file);
 
-        // header('Expires: 0');
-        // header('Cache-Control: must-revalidate');
-        // header('Pragma: public');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
         // header('Content-Length: ' . filesize($file));
-        // // header('Content-Length: ' . filesize($file));
 
-        // echo "  ";
+        echo "  ";
 
-        // echo filesize($file);
+        echo filesize($file);
 
         
 
-        // readfile($file);
-        // exit; 
+        readfile($file);
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        exit; 
       }
 
 
@@ -362,8 +367,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     console.log(data);
                   }
                 });
+                window.location.href = 'check.php?course='+ex;
                 })
               })
+
+            }
+            else{
+              window.location.href = 'check.php?course='+ex;
             }
 
             // Prevent the default form submission
