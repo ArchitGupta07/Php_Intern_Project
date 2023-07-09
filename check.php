@@ -31,7 +31,7 @@ header('Content-Length: ' . filesize($file));
 
 echo "  ";
 
-echo filesize($file);
+echo filesize($file, true);
 
 
 
