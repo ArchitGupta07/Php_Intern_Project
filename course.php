@@ -1,6 +1,12 @@
 <?php
 require "dbconnect.php";
 echo $_GET['course'];
+
+
+if($_SERVER["REQUEST_METHOD"] == 'POST'){
+  if(isset($_POST['uidEdit'])){
+    echo 'yes';
+  }}
 ?>
 
 
@@ -68,17 +74,14 @@ echo $_GET['course'];
           <form action="/Php_Learning/courses.php" method="POST">
             <!-- <input type="hidden" type="text" name="uidEdit" id="uidEdit"> -->
             <div class="present">
-              <label for="">username</label>
-              <input type="text" name="usernameEdit" id="usernameEdit">
+              <label for="">Attendance</label>
+              <input type="text" name="present" id="present">
             </div>
-            <div class="email">
-              <label for="">email</label>
-              <input type="text" name="emailEdit" id="emailEdit">
+            <div class="reason">
+              <label for="">Reason for absent</label>
+              <input type="text" name="reason" id="reason">
             </div>
-            <div class="mobile">
-              <label for="">mobile_no</label>
-              <input type="text" name="mobileEdit" id="mobileEdit">
-            </div>
+           
             <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
           <!-- </form> -->
         </div>
