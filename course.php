@@ -22,7 +22,7 @@ echo $_GET['course'];
 
 <body>
    <!-- Modal 2 -->
-   <div class="modal fade" tabindex="-1" id="attend1" tabindex="-1" aria-labelledby="attend1Label"
+   <div class="modal fade"   tabindex="-1" id="attend1" tabindex="-1" aria-labelledby="attend1Label"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -31,7 +31,7 @@ echo $_GET['course'];
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/Php_Learning/courses.php" method="POST">
+          <!-- <form action="/Php_Learning/courses.php" method="POST">
             <input type="hidden" type="text" name="uidEdit" id="uidEdit">
             <div class="username">
               <label for="">username</label>
@@ -44,8 +44,8 @@ echo $_GET['course'];
             <div class="mobile">
               <label for="">mobile_no</label>
               <input type="text" name="mobileEdit" id="mobileEdit">
-            </div>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            </div> -->
+            <button type="submit" class="btn btn-primary" >Save changes</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -54,7 +54,7 @@ echo $_GET['course'];
         </div>
       </div>
     </div>
-  </div>
+  </div> 
   <!-- Modal 1 -->
   <div class="modal fade" tabindex="-1" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
     aria-hidden="true">
@@ -66,8 +66,8 @@ echo $_GET['course'];
         </div>
         <div class="modal-body">
           <form action="/Php_Learning/courses.php" method="POST">
-            <input type="hidden" type="text" name="uidEdit" id="uidEdit">
-            <div class="username">
+            <!-- <input type="hidden" type="text" name="uidEdit" id="uidEdit"> -->
+            <div class="present">
               <label for="">username</label>
               <input type="text" name="usernameEdit" id="usernameEdit">
             </div>
@@ -79,11 +79,11 @@ echo $_GET['course'];
               <label for="">mobile_no</label>
               <input type="text" name="mobileEdit" id="mobileEdit">
             </div>
-            <button type="submit" class="attend btn btn-primary">Save changes</button>
-          </form>
+            <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
+          <!-- </form> -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
         </div>
       </div>
@@ -234,6 +234,20 @@ echo $_GET['course'];
     Array.from(attends).forEach((element)=>{
         element.addEventListener("click", (e)=>{
             console.log("edit",);
+            console.log("edit",e.target.parentNode.parentNode);
+            tr = e.target.parentNode.parentNode;
+            first_name = tr.getElementsByTagName("td")[0].innerText;
+            last_name = tr.getElementsByTagName("td")[1].innerText;
+            email = tr.getElementsByTagName("td")[2].innerText;
+            role = tr.getElementsByTagName("td")[3].innerText;
+            console.log(first_name,last_name,email,role)
+
+            firstEdit.value = first_name;
+            lastEdit.value = last_name;
+            emailEdit.value = email;
+            roleEdit.value = role;
+            uidEdit.value  = e.target.id;
+            console.log(e.target.id)
            
             $('#attend1').modal('toggle');
 
