@@ -98,6 +98,40 @@ $prof = mysqli_fetch_assoc($data);
 </head>
 
 <body>
+<!-- ------------------------Quiz Modal---------------------------------- -->
+
+<div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="quizModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="./course.php?course=<?php echo $_GET['course']; ?> " method="POST">
+            <!-- <input type="hidden" type="text" name="attendance" id="attendance"> -->
+            <div class="present">
+              <label for="">Attendance</label>
+              <input type="text" name="present" id="present">
+            </div>
+            <div class="reason">
+              <label for="">Reason for absent</label>
+              <input type="text" name="reason" id="reason">
+            </div>
+
+            <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -----------------------------Profile------------------------------ -->
+
     <div class="container1">
         <div class="profile">
             <!-- <div class="image"></div> -->
@@ -292,6 +326,7 @@ $prof = mysqli_fetch_assoc($data);
 
                 var qu = e.target.id;
                 console.log(qu);
+                $('#quizModal').modal('toggle');
             });
 
         });
