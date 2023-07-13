@@ -153,7 +153,7 @@ $prof = mysqli_fetch_assoc($data);
                                 
                                
                                 <div class="col-12">
-                                    <div class="d-flex justify-content-center"> <button class="btn btn-primary px-4 py-2 fw-bold"> continue</button> </div>
+                                    <div class="d-flex justify-content-center"> <button class=" quiz_submit btn btn-primary px-4 py-2 fw-bold"> continue</button> </div>
                                 </div>
                             </div>
                         </div>
@@ -359,6 +359,21 @@ $prof = mysqli_fetch_assoc($data);
 
         quizzes = document.getElementsByClassName('quiz');
         Array.from(quizzes).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("quizzes");
+
+                var qu = e.target.id;
+                console.log(qu);
+                $('#quizModal').modal('toggle');
+            });
+
+        });
+
+        // --------------------------------------submit quiz modal button----------------------
+
+
+        quiz_sub = document.getElementsByClassName('quiz_submit');
+        Array.from(quiz_sub).forEach((element) => {
             element.addEventListener("click", (e) => {
                 console.log("quizzes");
 
