@@ -211,12 +211,12 @@ $prof = mysqli_fetch_assoc($data);
                     while ($prof = mysqli_fetch_assoc($data)) {
                         echo " <tr>
                                         <th scope='row'>" . $prof['type'] . " </th>;
-                                        <td>  <button class='edit' id= '" . $prof['eid'] . "' href='/edit'>Edit</button> </td>
+                                        <td>  <button class='submit' id= '" . $prof['eid'] . "' href='/edit'>Edit</button> </td>
                                         <td>" . $prof['start_date'] . "</td>
                                         <td>" . $prof['deadline'] . "</td>
                                         <td>18</td>
                                         
-                                        <td>  <button class='edit' id= '" . $prof['eid'] . "' href='/edit'>Edit</button> </td>
+                                        <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
                                         </tr>";
                     }
                     ?>
@@ -236,9 +236,34 @@ $prof = mysqli_fetch_assoc($data);
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
     <script>
+        // jQuery.noConflict();
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
+    </script>
+    
+    
+    
+    
+    <script>
+    
+    edits = document.getElementsByClassName('down_assign');
+    Array.from(edits).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        console.log("down_assign");
+
+        var ex = e.target.id;
+        console.log(ex);
+
+        $('#editModal').modal('toggle');
+
+
+      });
+
+    });
+
+      
+
     </script>
 
 
