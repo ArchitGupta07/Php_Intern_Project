@@ -7,11 +7,11 @@ $c = $_GET['course'];
 
 $user = $_SESSION['uid'];
 echo $user;
-$query5 = "Select * from assignment where cid = $c ";
+$query5 = "Select * from evaluation where eid = $c ";
 $result5 = mysqli_query($conn, $query5);
 $core = mysqli_fetch_assoc($result5);
 
-echo $core['down_pdf'];
+echo $core['documents'];
 
 $file = "files/evaluation/".$core['documents']; 
 // $file = "check.txt"; 

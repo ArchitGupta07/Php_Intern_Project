@@ -151,7 +151,7 @@ $prof = mysqli_fetch_assoc($data);
                 </div>
                 <div class="mb-3">
                     <?php
-                   echo ' <label for="cars">Choose a car:</label>
+                    echo ' <label for="cars">Choose a car:</label>
                     <select name="cars" id="cars">
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
@@ -210,14 +210,18 @@ $prof = mysqli_fetch_assoc($data);
                     $data = mysqli_query($conn, $sql);
                     while ($prof = mysqli_fetch_assoc($data)) {
                         echo " <tr>
-                                        <th scope='row'>" . $prof['type'] . " </th>;
-                                        <td>  <button class='submit' id= '" . $prof['eid'] . "' href='/edit'>Edit</button> </td>
-                                        <td>" . $prof['start_date'] . "</td>
-                                        <td>" . $prof['deadline'] . "</td>
-                                        <td>18</td>
-                                        
-                                        <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
-                                        </tr>";
+                                <th scope='row'>" . $prof['type'] . " </th>;";
+
+                        if ($prof['type'] == 'Assignment') {
+                            echo  "<td>  <button class='assign' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
+                        } else {
+                            echo  "<td>  <button class='quiz' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
+                        }
+                        echo    "<td>" . $prof['start_date'] . "</td>
+                                <td>" . $prof['deadline'] . "</td>
+                                <td>18</td>                                        
+                                <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
+                                </tr>";
                     }
                     ?>
                 </tbody>
@@ -241,29 +245,56 @@ $prof = mysqli_fetch_assoc($data);
             $('#myTable').DataTable();
         });
     </script>
-    
-    
-    
-    
+
+
+
+
     <script>
-    
-    edits = document.getElementsByClassName('down_assign');
-    Array.from(edits).forEach((element) => {
-      element.addEventListener("click", (e) => {
-        console.log("down_assign");
+        //  ----------------------------------Download documents regarding evaluation----------------
+        down = document.getElementsByClassName('down_assign');
+        Array.from(down).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("down_assign");
 
-        var ex = e.target.id;
-        console.log(ex);
-
-        $('#editModal').modal('toggle');
+                var ex = e.target.id;
+                console.log(ex);
 
 
-      });
+                window.location.href = 'assign_check.php?course=' + ex;
 
-    });
 
-      
+            });
 
+        });
+
+
+        // --------------------------------------submit assignment button----------------------
+
+        assigns = document.getElementsByClassName('assign');
+        Array.from(assigns).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("assigns");
+
+                var as = e.target.id;
+                console.log(as);
+            });
+
+        });
+
+
+        // --------------------------------------submit quiz button----------------------
+
+
+        quizzes = document.getElementsByClassName('quiz');
+        Array.from(quizzes).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("quizzes");
+
+                var qu = e.target.id;
+                console.log(qu);
+            });
+
+        });
     </script>
 
 
