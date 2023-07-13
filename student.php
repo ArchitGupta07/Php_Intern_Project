@@ -98,39 +98,132 @@ $prof = mysqli_fetch_assoc($data);
 </head>
 
 <body>
-<!-- ------------------------Quiz Modal---------------------------------- -->
+    <!-- ------------------------Quiz Modal---------------------------------- -->
 
-<div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="quizModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="./course.php?course=<?php echo $_GET['course']; ?> " method="POST">
-            <!-- <input type="hidden" type="text" name="attendance" id="attendance"> -->
-            <div class="present">
-              <label for="">Attendance</label>
-              <input type="text" name="present" id="present">
+    <div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="quizModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./student.php ?> " method="POST">
+
+                        <div class="container mb-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="fw-bold mt-5">2. Complete the following sentences:Alice couldn't _______ the humilation any longer and stormed out of the room red as a bed</p>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-6"> <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject">is</span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> was </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> will </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
+                                                </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-bold mt-5">2. Complete the following sentences:Alice couldn't _______ the humilation any longer and stormed out of the room red as a bed</p>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-6"> <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject">is</span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> was </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> will </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
+                                                </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-bold mt-5">2. Complete the following sentences:Alice couldn't _______ the humilation any longer and stormed out of the room red as a bed</p>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-6"> <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject">is</span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> was </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> will </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
+                                                </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-bold mt-5">2. Complete the following sentences:Alice couldn't _______ the humilation any longer and stormed out of the room red as a bed</p>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-6"> <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject">is</span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> was </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> will </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
+                                                </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-bold mt-5">2. Complete the following sentences:Alice couldn't _______ the humilation any longer and stormed out of the room red as a bed</p>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-6"> <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject">is</span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> was </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> will </span> </div>
+                                                </label> </div>
+                                            <div class="col-md-6"> <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
+                                                    <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
+                                                </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-center"> <button class="btn btn-primary px-4 py-2 fw-bold"> continue</button> </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
             </div>
-            <div class="reason">
-              <label for="">Reason for absent</label>
-              <input type="text" name="reason" id="reason">
-            </div>
-
-            <button type="submit" class="attend btn btn-primary" name="attendance" id="attendance" data-dismiss="modal">Save changes</button>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- -----------------------------Profile------------------------------ -->
+    <!-- -----------------------------Profile------------------------------ -->
 
     <div class="container1">
         <div class="profile">
