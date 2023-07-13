@@ -364,7 +364,9 @@ $prof = mysqli_fetch_assoc($data);
 
                 var qu = e.target.id;
                 console.log(qu);
+                
                 $('#quizModal').modal('toggle');
+                window.location.href = 'student.php?quiz=' + ex;
             });
 
         });
