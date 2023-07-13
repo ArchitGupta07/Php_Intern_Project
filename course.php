@@ -367,13 +367,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     console.log(data);
                   }
                 });
-                window.location.href = 'check.php?course='+ex;
+                window.location.href = 'course_check.php?course='+ex;
                 })
               })
 
             }
             else{
-              window.location.href = 'check.php?course='+ex;
+              window.location.href = 'course_check.php?course='+ex;
             }
 
             // Prevent the default form submission
