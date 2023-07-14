@@ -17,6 +17,26 @@ $data = mysqli_query($conn, $sql);
 $prof = mysqli_fetch_assoc($data);
 
 
+
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+    echo "Quiz";
+    if (isset($_POST['quiz_end'])) {
+
+        echo "Quiz";
+
+        $postData = $_POST;
+        foreach ($postData as $key => $value) {
+            // Process each key-value pair as needed
+            echo $key . ': ' . $value . '<br>';
+        }
+
+
+
+
+
+    }}
+
+
 ?>
 
 
