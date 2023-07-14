@@ -12,8 +12,9 @@
     <h1></h1>
     <div class="container mb-5">
         <div class="row">
+       
 
-        <form action="/Php_Learning/extras.php" method="POST" enctype="multipart/form-data">
+        
 
             <?php
             require "dbconnect.php";
@@ -29,41 +30,43 @@
             
 
             while ($ques = mysqli_fetch_assoc($result)) {
-            echo ' <div class="col-12">
+            echo '<form action="/Php_Learning/extras.php?student=' . $_SESSION['uid'] . '&eid='.$c.'" method="POST" enctype="multipart/form-data">
+                        <div class="col-12">
                         <p class="fw-bold mt-5">'.$ques['qid'].') '. $ques['question'].'</p>
                             <div>
                                 <div class="row">
-                                    <div class="col-md-6"> <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
+                                    <div class="col-md-6"> <input type="radio" name="'.$ques['qid'].'" id="'.$ques['qid'].'" value="a"> <label for="five" class="box fifth w-100">
                                             <div class="course"> <span class="circle"></span> <span class="subject">(a)</span> </div>
                                         </label> </div>
-                                    <div class="col-md-6"> <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
+                                    <div class="col-md-6"> <input type="radio" name="'.$ques['qid'].'" id="'.$ques['qid'].'" value="b"> <label for="six" class="box sixth w-100">
                                             <div class="course"> <span class="circle"></span> <span class="subject"> (b) </span> </div>
                                         </label> </div>
-                                    <div class="col-md-6"> <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
+                                    <div class="col-md-6"> <input type="radio" name="'.$ques['qid'].'" id="'.$ques['qid'].'" value="c"> <label for="seven" class="box seveth w-100">
                                             <div class="course"> <span class="circle"></span> <span class="subject"> (c) </span> </div>
                                         </label> </div>
-                                    <div class="col-md-6"> <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
+                                    <div class="col-md-6"> <input type="radio" name="'.$ques['qid'].'" id="'.$ques['qid'].' value="d" <label for="eight" class="box eighth w-100">
                                             <div class="course"> <span class="circle"></span> <span class="subject"> (d) </span> </div>
                                         </label> </div>
                             </div>
                     </div>
-                </div>
-                <div class="col-12">
-            <div class="d-flex justify-content-center"> <button class="btn btn-primary px-4 py-2 fw-bold" id="quiz_end"> continue</button> </div>
-        </div>
+                    </div>
+                    ' ;
+                    
+                    
+                }
                 
-                ' ;
-
-            }
-
-
-
-
-
-            ?>
+                
+                
+                
+                
+                ?>
 
 
-        </form>
+<div class="col-12">
+<div class="d-flex justify-content-center"> <button class="btn btn-primary px-4 py-2 fw-bold" name="quiz_end" id="quiz_end"> continue</button> </div>
+</div>
+</form>
+        
         </div>
     </div>
 

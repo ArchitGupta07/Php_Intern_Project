@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 <body>
     <!-- ------------------------Quiz Modal---------------------------------- -->
 
-    <div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -186,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- -----------------------------Profile------------------------------ -->
 
@@ -297,21 +297,51 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 </thead>
                 <tbody>
                     <?php
-                    $user = $_SESSION['username'];
+                    $user = $_SESSION['uid'];
                     $sql = "Select * from evaluation";
                     $data = mysqli_query($conn, $sql);
+                    $currentDate = date('Y-m-d');
+                    // echo $currentDate;
                     while ($prof = mysqli_fetch_assoc($data)) {
+
+                        $sql5 = "Select * from marks where student_id='$user' and eid='" . $prof['eid'] . "'";
+                        $data5 = mysqli_query($conn, $sql5);
+                        $marks = mysqli_fetch_assoc($data5);
+                        $num = mysqli_num_rows($data5);
+
+
+
                         echo " <tr>
                                 <th scope='row'>" . $prof['type'] . " </th>;";
 
+                        if($prof['deadline']>$currentDate || (isset($marks['action']) && $marks['action']=='submitted')){
+
                         if ($prof['type'] == 'Assignment') {
-                            echo  "<td>  <button class='assign' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
+
+                            if(isset($marks['action']) && $marks['action']=='submitted'){
+                                echo "<td>" . $marks['action'] . "</td>;";
+                            }else{                            
+                            echo  "<td>  <button class='assign' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";}
+
                         } else {
+
+                            if(isset($marks['action']) && $marks['action']=='submitted'){
+                                echo "<td>" . $marks['action'] . "</td>;";
+                            }else{
+
                             echo  "<td>  <button class='quiz' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
-                        }
+                        }}
+                    }else{
+                        echo    "<td> missed</td>";
+
+                    }
+
+
+
+
                         echo    "<td>" . $prof['start_date'] . "</td>
                                 <td>" . $prof['deadline'] . "</td>
-                                <td>18</td>                                        
+                                <td>" . $marks['marks'] . "</td>                                        
                                 <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
                                 </tr>";
                     }

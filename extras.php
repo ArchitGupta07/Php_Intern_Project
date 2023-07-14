@@ -103,22 +103,51 @@
 
 
 <?php
+require "dbconnect.php";
+$student= $_GET['student'];
+$eval = $_GET['eid'];
+echo $eval;
+
 
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-    echo "Quiz";
-    echo true;
-    echo isset($_POST['quiz_end'])==true;
+    // echo "Quiz";
+    
+    // $sql1 = "UPDATE `evaluation` SET `marks` = 1  WHERE `evaluation`.`eid` = 2";
+    // $p_data = mysqli_query($conn, $sql1);
+   
     if (isset($_POST['quiz_end'])) {
 
-        echo "Quiz";
+       
+
+        // echo "Quiz";
+       
+        
+        // Process the selected option as needed
+        $marks = 0;
+        $questions = "Select * from quizzes where eid = 2 ";
+        $result = mysqli_query($conn, $questions);
+        
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $qid = $row['qid'];
+            $correct = $row['correct'];
+            $correctArray[$qid] = $correct; // Assign 'correct' value to the corresponding 'qid' key
+        }
 
         $postData = $_POST;
         foreach ($postData as $key => $value) {
-            // Process each key-value pair as needed
-            echo $key . ': ' . $value . '<br>';
-        }
+            // Process each key-value pair as neede
+            if($key!='quiz_end'){
+            if($postData[$key]==$correctArray[$key]){
+                $marks+=1;
 
-
+            
+            }}}
+        echo 'jee haan'.$marks;
+        
+        
+        $sql1 ="INSERT INTO `marks` (`cid`, `eid`, `student_id`, `marks`) VALUES ('1', '$eval', '$student', '$marks')";
+        $p_data = mysqli_query($conn, $sql1);
 
 
 
@@ -126,3 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 ?>
+
+
+
+
