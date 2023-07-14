@@ -106,7 +106,8 @@
 
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     echo "Quiz";
-    echo isset($_POST['quiz_end']);
+    echo true;
+    echo isset($_POST['quiz_end'])==true;
     if (isset($_POST['quiz_end'])) {
 
         echo "Quiz";
