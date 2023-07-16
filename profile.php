@@ -302,7 +302,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     </div>
   </div>
-
+<div class="forms">
   <div class="container1 bg-secondary border rounded p-3" style="width: 300px; margin:auto">
     <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
@@ -333,6 +333,38 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     </form>
 
 
+  </div>
+  <div class="container1 bg-secondary border rounded p-3" style="width: 300px; margin:auto">
+    <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Course Code</label>
+        <input type="text" class="form-control" id="course_code" name="course_code" placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Module</label>
+        <input type="text" class="form-control" id="module" name="module" placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Session No</label>
+        <input type="text" class="form-control" id="session" name="session" placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Mode</label>
+        <input type="text" class="form-control" id="mode" name="mode" placeholder="">
+      </div>
+      <div>
+        <input type="file" name='myfile'>
+
+      </div>
+      <button type="submit" name="course_upload" id="course_upload">Submit</button>
+    </form>
+
+
+  </div>
   </div>
 
 
