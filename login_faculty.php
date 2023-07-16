@@ -25,6 +25,9 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         $_SESSION['role'] = $val['role'];
         $_SESSION['uid'] = $val['uid'];
 
+
+        echo "check1";
+
         if($val['role']=='faculty'){
             header("location: profile.php");
         }elseif($val['role']=='student'){
