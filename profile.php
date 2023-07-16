@@ -373,24 +373,24 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
               echo "<option>" . $core['course_code'] . "</option>";
             }
-            ?>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select">
             
-            <option selected>Choose...</option>
-            <?php
-            $use = $_SESSION['username'];
-            $sql1 = "Select distinct(course_code) from courses where creator = '$use'";
-            $p_data = mysqli_query($conn, $sql1);
-            // $proj = mysqli_fetch_assoc($p_data);
-            while ($module = mysqli_fetch_assoc($p_data)) {
+        //   echo '</select>
+        // </div>
+        // <div class="col-md-4">
+        //   <label for="inputState" class="form-label">State</label>
+        //   <select id="inputState" class="form-select">
+            
+        //     <option selected>Choose...</option>';
+            
 
+            
+        //     $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
 
-              echo "<option>" . $module['course_code'] . "</option>";
-            }
+        //     $c = mysqli_query($conn, $sql1);
+        //     // $proj = mysqli_fetch_assoc($p_data);
+        //     while ($module = mysqli_fetch_assoc($c)) {
+        //       echo "<option>" . $module['module'] . "</option>";
+        //     }
             ?>
           </select>
         </div>
