@@ -311,14 +311,17 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
   <!-- -------------------------profile-------------------------------- -->
 
-  <div class="container1">
-    <div class="profile">
+  <div class="container1 ">
+    <div class="profile border rounded ">
       <!-- <div class="image"></div> -->
 
       <?php
       if ($_SESSION['role'] == 'admin') {
 
         echo '<a href="./admin.php">Go to Admin Page</a>';
+        echo '<a href="./student.php">Go to Student Page</a>';
+      }elseif($_SESSION['role'] == 'faculty') {
+        echo '<a href="./student.php">Go to Student Page</a>';
       }
       ?>
       <h2><?php echo $_SESSION['username'] ?></h2>

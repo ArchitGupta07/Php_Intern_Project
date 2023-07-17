@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     $password =$_POST['password'];
 
 
-    $sql = "Select * from profile where username='$username' AND password = '$password' AND role = 'faculty'"; 
+    $sql = "Select * from profile where username='$username' AND password = '$password' AND role = 'student'"; 
     $result = mysqli_query($conn,$sql);
     $num = mysqli_num_rows($result);
     $val = mysqli_fetch_assoc($result);
@@ -27,10 +27,9 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
 
         echo "check1";
-
         
-        header("location: profile.php");
-       
+        header("location: student.php");
+        
 
     }
     else{

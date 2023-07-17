@@ -58,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 <body>
 
     <div class="container p-3 border rounded bg-info-subtle mt-5">
-        <form action="/Php_Learning/quiz_maker.php" method="POST" enctype="multipart/form-data">
+        <form action="/Php_Learning/quiz_maker.php?course=<?php echo $_GET['course']; ?>&module=<?php echo $_GET['module']; ?>&eid=<?php echo $_GET['eid']; ?>" method="POST" enctype="multipart/form-data">
+        
             <input type="hidden" name="course" value="<?php echo $_GET['course']; ?>">
             <input type="hidden" name="module" value="<?php echo $_GET['module']; ?>">
             <input type="hidden" name="eid" value="<?php echo $_GET['eid']; ?>">

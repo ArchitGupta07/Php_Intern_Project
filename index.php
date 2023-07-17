@@ -17,6 +17,7 @@
 <a href="./login_admin.php">admin</a><br>
 <a href="./login_faculty.php">faculty</a><br>
 <a href="./register.php">register</a><br>
+<a href="./login_student.php">Student</a><br>
     
 </body>
 </html>
