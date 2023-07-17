@@ -129,7 +129,55 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     // $sql = "UPDATE `profile` SET `username` = '$username' , `email` = '$email' , `mobile_no` = '$mobile_no' WHERE `profile`.`uid` = $uid";
     $sql = "INSERT INTO `courses` (`course_code`, `module`, `session_no`, `title`, `creator`, `mode`, `date`, `down_pdf`) VALUES ('$course_code', '$module', '$session_no', '$title', '$user', '$mode', current_timestamp(), '$file_name')";
     $res = mysqli_query($conn, $sql);
+
+
+  }elseif (isset($_POST['new_eval'])) {
+    
+    $course = $_POST['courses'];
+    $module = $_POST['modules'];
+    
+    
+    $deadline =  date('Y-m-d',strtotime($_POST['date'])) ; 
+    echo $_POST['date'];
+    echo $deadline;
+    $type = $_POST['type'];
+    $file_name = $_FILES['myfile']['name'];
+    $file_tmp_name = $_FILES['myfile']['tmp_name'];
+
+    move_uploaded_file($file_tmp_name, "files/evaluation/" . $file_name);
+
+    $sql = "INSERT INTO `evaluation` (`course`, `module`, `type`, `start_date`, `deadline`, `documents`) VALUES ('$course', '$module','$type', current_timestamp(), $deadline, '$file_name')";
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+      $insertedRowId = mysqli_insert_id($conn);
+  
+      // Fetch the inserted row
+      $fetchSql = "SELECT * FROM `evaluation` WHERE `id` = $insertedRowId";
+      $fetchRes = mysqli_query($conn, $fetchSql);
+  
+      if ($fetchRes && mysqli_num_rows($fetchRes) > 0) {
+          $prod = mysqli_fetch_assoc($fetchRes);
+          // Now you can work with the fetched row
+          // ...
+      }
+    }
+    $eid = $prod['eid'];
+
+
+
+    if($_POST['type'] =='quiz') {
+      header("location: quiz_maker.php?course=$course&module=$module&eid=$eid");
+
+
+    }
+
+
+
+
+
+
   }
+
 }
 
 
@@ -340,10 +388,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
        
         <div class="col-md-6">
-          <label for="inputState" class="form-label">Course</label>
-          <select id="inputState" class="form-select">
+          <label for="courses" class="form-label">Course</label>
+          <select id="courses" name="courses" class="form-select">
 
-            <option selected>Choose...</option>
+            <option selected disabled>Choose...</option>
             <?php
             $use = $_SESSION['username'];
             $courses = "Select distinct(course_code) from courses where creator = '$use'";
@@ -352,14 +400,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             while ($core = mysqli_fetch_assoc($p_data)) {
 
 
-              echo "<option>" . $core['course_code'] . "</option>";
+              echo "<option id='".$core['course_code']."' value='".$core['course_code']."'>" . $core['course_code'] . "</option>";
             }
             ?>
           </select>
         </div>
         <div class="col-md-6 py-3">
-          <label for="inputState" class="form-label">Module</label>
-          <select id="inputState" class="form-select">
+          <label for="modules" class="form-label">Module</label>
+          <select id="modules" name="modules" class="form-select">
 
             <option selected>Choose...</option>;
             <?php
@@ -373,8 +421,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           </select>
         </div>
         <div class="col-md-6 py-3">
-          <label for="inputState" class="form-label">Type</label>
-          <select id="inputState" class="form-select">
+          <label for="type" class="form-label">Type</label>
+          <select id="type" name="type" class="form-select">
 
             <option selected>Choose...</option>;         
             <option>assignment</option>";   
@@ -392,7 +440,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         </div>
        
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" name="new_eval" id="new_eval" class="btn btn-primary">Submit</button>
         </div>
 
 
@@ -429,6 +477,26 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       })
     })
   </script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#courses").change(function(){
+				var cid = $("#courses").val();
+        console.log(cid)
+				$.ajax({
+					url: 'related_dropdown.php',
+					method: 'post',
+					data: 'cid=' + cid
+				}).done(function(modules){
+					console.log(modules);
+					modules = JSON.parse(modules);
+					$('#modules').empty();
+					modules.forEach(function(module){
+						$('#modules').append('<option>' + module.module + '</option>')
+					})
+				})
+			})
+		})
+	</script>
 
 
 </body>
