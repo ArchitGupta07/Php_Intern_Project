@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         
         // Process the selected option as needed
         $marks = 0;
-        $questions = "Select * from quizzes where eid = 2 ";
+        $questions = "Select * from quizzes where eid = $eval ";
         $result = mysqli_query($conn, $questions);
         
 
@@ -143,10 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
             
             }}}
-        echo 'jee haan'.$marks;
+
+        echo "your marks:-". $marks;
         
         
-        $sql1 ="INSERT INTO `marks` (`cid`, `eid`, `student_id`, `marks`) VALUES ('1', '$eval', '$student', '$marks')";
+        
+        $sql1 ="INSERT INTO `marks` (`cid`, `eid`, `student_id`, `marks`, `action`) VALUES ('1', '$eval', '$student', '$marks','submitted')";
         $p_data = mysqli_query($conn, $sql1);
 
 
@@ -155,6 +157,19 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <a href="./student.php">DashBoard</a>
+</body>
+</html>
 
 
 

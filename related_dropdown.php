@@ -20,7 +20,7 @@
 		$db = new dbconnect();
 		$conn = $db->connect();
 
-		$stmt = $conn->prepare("SELECT module FROM courses WHERE course_code =" . $_POST['cid']);
+		$stmt = $conn->prepare("SELECT distinct(module) FROM courses WHERE course_code =" . $_POST['cid']);
 		$stmt->execute();
 		$modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode($modules);

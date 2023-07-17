@@ -29,12 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             // Process each key-value pair as needed
             echo $key . ': ' . $value . '<br>';
         }
-
-
-
-
-
-    }}
+    }
+}
 
 
 ?>
@@ -205,24 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             <h5><?php echo $prof['mobile_no'] ?></h5>
             <h5> <?php echo $prof['role'] ?></h5>
             <h5> <?php echo $prof['uid'] ?></h5>
-            <h5> Courses: -
-                <?php
-                // session_start();
 
-                $uid1 = $_SESSION['uid'];
-                $use = $_SESSION['username'];
-                $sql1 = "Select distinct(course_code) from courses where creator = '$use'";
-                $p_data = mysqli_query($conn, $sql1);
-                // $proj = mysqli_fetch_assoc($p_data);
-                while ($prod = mysqli_fetch_assoc($p_data)) {
-                    // echo $prod['title'] ; 
-                    // echo '<a href="./course.php?name=$prod['creator']">' . $prod['title'] . '</a>';
-                    echo '<a href="./course.php?course=' . $prod['course_code'] . '">' . $prod['course_code'] . '</a>';
-
-                    echo ", ";
-                }
-                ?>
-            </h5>
 
             <!-- <h5>email</h5> -->
             <button class="edit" id="<?php echo $prof['uid']; ?>" href="/edit">Edit</button>
@@ -232,44 +211,42 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     <div class="check" style="display: flex;">
         <div class="container1 bg-secondary border rounded p-3 float-right" style="width: 300px; margin:auto">
-            <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Course Code</label>
-                    <input type="text" class="form-control" id="course_code" name="course_code" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Module</label>
-                    <input type="text" class="form-control" id="module" name="module" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <?php
-                    echo ' <label for="cars">Choose a car:</label>
-                    <select name="cars" id="cars">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>';
+            <form action="/Php_Learning/student.php" method="POST" enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <label for="courses" class="form-label">Course</label>
+                    <select id="courses" name="courses" class="form-select">
 
-                    ?>
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Session No</label>
-                    <input type="text" class="form-control" id="session" name="session" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Mode</label>
-                    <input type="text" class="form-control" id="mode" name="mode" placeholder="">
-                </div>
-                <div>
-                    <input type="file" name='myfile'>
+                        <option selected disabled>Choose...</option>
+                        <?php
+                        $use = $_SESSION['username'];
+                        $courses = "Select distinct(course_code) from courses";
+                        $p_data = mysqli_query($conn, $courses);
+                        // $proj = mysqli_fetch_assoc($p_data);
+                        while ($core = mysqli_fetch_assoc($p_data)) {
 
+
+                            echo "<option id='" . $core['course_code'] . "' value='" . $core['course_code'] . "'>" . $core['course_code'] . "</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
-                <button type="submit" name="course_upload" id="course_upload">Submit</button>
+                <div class="col-md-6 py-3">
+                    <label for="modules" class="form-label">Module</label>
+                    <select id="modules" name="modules" class="form-select">
+
+                        <option selected>Choose...</option>;
+                        <?php
+                        $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
+                        $c = mysqli_query($conn, $sql1);
+                        // $proj = mysqli_fetch_assoc($p_data);
+                        while ($module = mysqli_fetch_assoc($c)) {
+                            echo "<option>" . $module['module'] . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <button type="submit" name="eval_select" id="eval_select">Submit</button>
             </form>
 
 
@@ -297,9 +274,28 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 </thead>
                 <tbody>
                     <?php
-                    $user = $_SESSION['uid'];
-                    $sql = "Select * from evaluation";
-                    $data = mysqli_query($conn, $sql);
+
+                    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                        echo "Quiz";
+                        if (isset($_POST['eval_select'])) {
+                            $course = $_POST['courses'];
+                            $module = $_POST['modules'];
+
+
+
+                            $user = $_SESSION['uid'];
+                            $sql = "Select * from evaluation where course='$course' AND module='$module'";
+                            $data = mysqli_query($conn, $sql);
+                            
+                        }
+                    } else {
+                        $user = $_SESSION['uid'];
+                        $sql = "Select * from evaluation";
+                        $data = mysqli_query($conn, $sql);
+                    }
+
+
+
                     $currentDate = date('Y-m-d');
                     // echo $currentDate;
                     while ($prof = mysqli_fetch_assoc($data)) {
@@ -314,35 +310,39 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                         echo " <tr>
                                 <th scope='row'>" . $prof['type'] . " </th>;";
 
-                        if($prof['deadline']>$currentDate || (isset($marks['action']) && $marks['action']=='submitted')){
+                        if ($prof['deadline'] > $currentDate || (isset($marks['action']) && $marks['action'] == 'submitted')) {
 
-                        if ($prof['type'] == 'Assignment') {
+                            if ($prof['type'] == 'Assignment') {
 
-                            if(isset($marks['action']) && $marks['action']=='submitted'){
-                                echo "<td>" . $marks['action'] . "</td>;";
-                            }else{                            
-                            echo  "<td>  <button class='assign' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";}
+                                if (isset($marks['action']) && $marks['action'] == 'submitted') {
+                                    echo "<td>" . $marks['action'] . "</td>;";
+                                } else {
+                                    echo  "<td>  <button class='assign' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
+                                }
+                            } else {
 
+                                if (isset($marks['action']) && $marks['action'] == 'submitted') {
+                                    echo "<td>" . $marks['action'] . "</td>;";
+                                } else {
+
+                                    echo  "<td>  <button class='quiz' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
+                                }
+                            }
                         } else {
-
-                            if(isset($marks['action']) && $marks['action']=='submitted'){
-                                echo "<td>" . $marks['action'] . "</td>;";
-                            }else{
-
-                            echo  "<td>  <button class='quiz' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
-                        }}
-                    }else{
-                        echo    "<td> missed</td>";
-
-                    }
+                            echo    "<td> missed</td>";
+                        }
 
 
 
 
                         echo    "<td>" . $prof['start_date'] . "</td>
-                                <td>" . $prof['deadline'] . "</td>
-                                <td>" . $marks['marks'] . "</td>                                        
-                                <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
+                                <td>" . $prof['deadline'] . "</td>";
+                        if (isset($marks['marks'])) {
+                            echo "<td>" . $marks['marks'] . "</td>;";
+                        } else {
+                            echo "<td>Pending</td>;";
+                        }
+                        echo " <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
                                 </tr>";
                     }
                     ?>
@@ -366,6 +366,27 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#courses").change(function() {
+                var cid = $("#courses").val();
+                console.log(cid)
+                $.ajax({
+                    url: 'related_dropdown.php',
+                    method: 'post',
+                    data: 'cid=' + cid
+                }).done(function(modules) {
+                    console.log(modules);
+                    modules = JSON.parse(modules);
+                    $('#modules').empty();
+                    modules.forEach(function(module) {
+                        $('#modules').append('<option>' + module.module + '</option>')
+                    })
+                })
+            })
+        })
     </script>
 
 
@@ -414,7 +435,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
                 var qu = e.target.id;
                 console.log(qu);
-                
+
                 // $('#quizModal').modal('toggle');
                 window.location.href = 'quiz.php?quiz=' + qu;
             });

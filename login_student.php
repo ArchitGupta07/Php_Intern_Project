@@ -69,7 +69,7 @@ if($login){
             <div class="row">
                 <div class="col-md-6">
                     <div class="myLeftCtn"> 
-                        <form method="POST" action="/Php_learning/login_faculty.php" class="myForm text-center">
+                        <form method="POST" action="/Php_learning/login_student.php" class="myForm text-center">
                             
                             <header>WELCOME</header>
                             <p>Sign-in by entering the information below</p>
