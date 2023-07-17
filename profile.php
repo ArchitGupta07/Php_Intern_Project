@@ -338,30 +338,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
 
 
+       
         <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword4">
-        </div>
-        <div class="col-12">
-          <label for="inputAddress" class="form-label">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-        <div class="col-12">
-          <label for="inputAddress2" class="form-label">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-        <div class="col-md-6">
-          <label for="inputCity" class="form-label">City</label>
-          <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="col-md-4">
-          <label for="inputState" class="form-label">State</label>
+          <label for="inputState" class="form-label">Course</label>
           <select id="inputState" class="form-select">
-            
+
             <option selected>Choose...</option>
             <?php
             $use = $_SESSION['username'];
@@ -373,41 +354,45 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
               echo "<option>" . $core['course_code'] . "</option>";
             }
-            
-        //   echo '</select>
-        // </div>
-        // <div class="col-md-4">
-        //   <label for="inputState" class="form-label">State</label>
-        //   <select id="inputState" class="form-select">
-            
-        //     <option selected>Choose...</option>';
-            
-
-            
-        //     $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
-
-        //     $c = mysqli_query($conn, $sql1);
-        //     // $proj = mysqli_fetch_assoc($p_data);
-        //     while ($module = mysqli_fetch_assoc($c)) {
-        //       echo "<option>" . $module['module'] . "</option>";
-        //     }
             ?>
           </select>
         </div>
-        <div class="col-md-2">
-          <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
+        <div class="col-md-6 py-3">
+          <label for="inputState" class="form-label">Module</label>
+          <select id="inputState" class="form-select">
+
+            <option selected>Choose...</option>;
+            <?php
+            $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
+            $c = mysqli_query($conn, $sql1);
+            // $proj = mysqli_fetch_assoc($p_data);
+            while ($module = mysqli_fetch_assoc($c)) {
+              echo "<option>" . $module['module'] . "</option>";
+            }
+            ?>
+          </select>
         </div>
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
+        <div class="col-md-6 py-3">
+          <label for="inputState" class="form-label">Type</label>
+          <select id="inputState" class="form-select">
+
+            <option selected>Choose...</option>;         
+            <option>assignment</option>";   
+            <option>quiz</option>";   
+            
+          </select>
         </div>
+        <div class="col-md-2 py-3">
+          <label for="date">Deadline:</label>
+          <input type="date" id="date" name="date">
+          
+        </div>
+        <div class="col-md-2 py-3">
+        <input type="file" name='myfile'>
+        </div>
+       
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
 
