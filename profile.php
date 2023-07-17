@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $insertedRowId = mysqli_insert_id($conn);
   
       // Fetch the inserted row
-      $fetchSql = "SELECT * FROM `evaluation` WHERE `id` = $insertedRowId";
+      $fetchSql = "SELECT * FROM `evaluation` WHERE `eid` = $insertedRowId";
       $fetchRes = mysqli_query($conn, $fetchSql);
   
       if ($fetchRes && mysqli_num_rows($fetchRes) > 0) {
