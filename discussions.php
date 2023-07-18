@@ -5,10 +5,16 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     if (isset($_POST['post_comment'])) {
 
-        $ = $_POST['usernameEdit'];
-        $uid = $_POST['uidEdit'];
-        $email = $_POST['emailEdit'];
-        $mobile_no = $_POST['mobileEdit'];
+        // $ = $_POST['usernameEdit'];
+        $comment = $_POST['uidEdit'];
+        $commenter = $_SESSION['username'];
+        $commenter_id = $_SESSION['uid'];
+        
+
+        $query = "INSERT INTO `discussions` (`comment`, `commenter`, `commenter_id`) VALUES ('$comment ', '$commenter','$commenter_id' )";
+        $res = mysqli_query($conn, $query);
+
+        
 
 
 
@@ -348,5 +354,23 @@ while ($comm = mysqli_fetch_assoc($comments)) {
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!-- --------collapsible reply to comment------------ -->
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  // var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+  }
+  </script>
   </body>
 </html>
