@@ -1,6 +1,7 @@
 <?php
 
 require "dbconnect.php";
+session_start();
 
 
 
@@ -311,14 +312,14 @@ while ($comm = mysqli_fetch_assoc($comments)) {
   <div class="comment-box">
     <div class="user">
       <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
-      <div class="name">{{user.username}}</div>
+      <div class="name"><?php $_SESSION['username'] ?></div>
 
     </div>
-    <form action="" method="post">
-      {% csrf_token %}
+    <form action="./discussions.php" method="post">
+      
       <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
       <input type="hidden" name="parent_id" value="">
-      <button type="submit" name="com" {{c.id}}class="comment-submit">Post Comment</button>
+      <button type="submit" name="comment" id="comment" class="comment-submit">Post Comment</button>
     </form>
   </div>
 
