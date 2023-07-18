@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     if (isset($_POST['post_comment'])) {
 
         // $ = $_POST['usernameEdit'];
-        $comment = $_POST['uidEdit'];
+        $comment = $_POST['comment'];
         $commenter = $_SESSION['username'];
         $commenter_id = $_SESSION['uid'];
         
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $query = "INSERT INTO `discussions` (`comment`, `commenter`, `commenter_id`) VALUES ('$comment ', '$commenter','$commenter_id' )";
         $res = mysqli_query($conn, $query);
 
-        
+
 
 
 
