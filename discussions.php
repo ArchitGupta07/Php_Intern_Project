@@ -2,6 +2,18 @@
 
 require "dbconnect.php";
 session_start();
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+    if (isset($_POST['post_comment'])) {
+
+        $ = $_POST['usernameEdit'];
+        $uid = $_POST['uidEdit'];
+        $email = $_POST['emailEdit'];
+        $mobile_no = $_POST['mobileEdit'];
+
+
+
+
+    }}
 
 
 
@@ -261,7 +273,7 @@ while ($comm = mysqli_fetch_assoc($comments)) {
 
         </div>
       </div>
-      <div class="comment-post">' . $comm['com_id'] . '</div>
+      <div class="comment-post">' . $comm['comment'] . '</div>
 
       <div class="reply-com">
         <button class="collapsible">Reply</button>       
@@ -269,9 +281,9 @@ while ($comm = mysqli_fetch_assoc($comments)) {
           <form action="" method="post">
             {% csrf_token %}
             <textarea id="comment" name="comment" cols="30" rows="2" placeholder="Your message"></textarea>
-            <input type="hidden" name="parent_id" value="{{c.id}}">
+            <input type="hidden" name="parent_id" value="'.$comm['com_id'].'">
           
-            <button type="submit" name="com" class="comment-submit">Post a Reply</button>
+            <button type="submit" name="reply" class="comment-submit">Post a Reply</button>
           </form>       
         </div>
       </div>
@@ -285,12 +297,12 @@ while ($comm = mysqli_fetch_assoc($comments)) {
           <div class="user">
             <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
             <div class="user-meta">
-              <div class="name">{{r.username}}</div>
-              <div class="day"> {{r.date}}</div>
+            <div class="name">' . $rep['commenter'] . '</div>
+            <div class="day">' . $rep['date'] . '</div>
     
             </div>
           </div>
-          <div class="comment-post"><a href="" style="color: rgb(19, 122, 232);">@{{r.parent.username}}</a> {{r.comment}}</div>                
+          <div class="comment-post"><a href="" style="color: rgb(19, 122, 232);">@{{r.parent.username}}</a>' . $comm['com_id'] . '</div>                
              
             <hr>  
             
@@ -312,14 +324,14 @@ while ($comm = mysqli_fetch_assoc($comments)) {
   <div class="comment-box">
     <div class="user">
       <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
-      <div class="name"><?php $_SESSION['username'] ?></div>
+      <div class="name"><?php echo $_SESSION['username']; ?></div>
 
     </div>
     <form action="./discussions.php" method="post">
       
       <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
       <input type="hidden" name="parent_id" value="">
-      <button type="submit" name="comment" id="comment" class="comment-submit">Post Comment</button>
+      <button type="submit" name="post_comment" id="post_comment" class="comment-submit">Post Comment</button>
     </form>
   </div>
 
