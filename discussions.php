@@ -19,6 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 
+    }elseif(isset($_POST['post_reply'])) {
+
+
+        $comment = $_POST['comment'];
+        $parent = $_POST['parent_id'];
+        $commenter = $_SESSION['username'];
+        $commenter_id = $_SESSION['uid'];
+        
+
+        $query = "INSERT INTO `discussions` (`parent_id`,`comment`, `commenter`, `commenter_id`) VALUES ('$parent ','$comment ', '$commenter','$commenter_id' )";
+        $res = mysqli_query($conn, $query);
+
+
+
     }}
 
 
@@ -284,12 +298,12 @@ while ($comm = mysqli_fetch_assoc($comments)) {
       <div class="reply-com">
         <button class="collapsible">Reply</button>       
         <div class="content" >         
-          <form action="" method="post">
-            {% csrf_token %}
+          <form action="./discussions.php" method="post">
+            
             <textarea id="comment" name="comment" cols="30" rows="2" placeholder="Your message"></textarea>
             <input type="hidden" name="parent_id" value="'.$comm['com_id'].'">
           
-            <button type="submit" name="reply" class="comment-submit">Post a Reply</button>
+            <button type="submit" name="post_reply" id="post_reply" class="comment-submit">Post a Reply</button>
           </form>       
         </div>
       </div>
@@ -308,7 +322,7 @@ while ($comm = mysqli_fetch_assoc($comments)) {
     
             </div>
           </div>
-          <div class="comment-post"><a href="" style="color: rgb(19, 122, 232);">@{{r.parent.username}}</a>' . $comm['com_id'] . '</div>                
+          <div class="comment-post"><a href="" style="color: rgb(19, 122, 232);">@' . $_SESSION['username'] .'</a>'  . $rep['comment'] . '</div>                
              
             <hr>  
             
@@ -317,13 +331,13 @@ while ($comm = mysqli_fetch_assoc($comments)) {
           
     </div>
     <br>
-    {% endfor %}
-}
+    
+
    
   </div>
   <br>
 
-  {% endfor %}
+  
   ';
 }}
 ?>
