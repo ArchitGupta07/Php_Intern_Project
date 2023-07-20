@@ -78,9 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         echo "  ";
 
         echo filesize($file);
-
-        
-
         readfile($file);
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
@@ -182,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
   <!-- -------------------modules----------------------------- -->
 
-  <div id="accordion">
+  <div id="modules">
 
 
 
