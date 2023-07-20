@@ -19,11 +19,10 @@
 <body>
 <?php
 require "dbconnect.php";
-echo $_GET['course'];
+
 session_start();
 
 $user = $_SESSION['uid'];
-echo $user;
 
 
 
