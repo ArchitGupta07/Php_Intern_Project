@@ -244,7 +244,7 @@ echo $user;
 
             // Send an AJAX request to the server
             jQuery.ajax({
-              url: './course.php?course=<?php echo $_GET['course']; ?>',
+              url: './course_check.php?course=<?php echo $_GET['course']; ?>',
               type: 'POST',
               data: {
                 attendance: pres,
@@ -261,7 +261,6 @@ echo $user;
             if (pres == 1) {
               // Open the modal
               $('#attend1').modal('toggle');
-
               
 
               feed = document.getElementsByClassName('feedback');
@@ -272,7 +271,7 @@ echo $user;
 
                      // Send an AJAX request to the server
                 jQuery.ajax({
-                  url: './course.php?course=<?php echo $_GET['course']; ?>',
+                  url: './course_check.php?course=<?php echo $_GET['course']; ?>',
                   type: 'POST',
                   data: {
                     feedback: f,
