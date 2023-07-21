@@ -118,8 +118,8 @@ $user = $_SESSION['uid'];
     while ($c = mysqli_fetch_assoc($c_data)) {
       echo '<div class="card">
     <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button id="myButton" class="btn btn-link" data-toggle="collapse" data-target="#collapse' . $c['module'] . '" aria-expanded="false" aria-controls="collapse' . $c['module'] . '">
+      <h5 id="'.$course_code.'" class="mb-0">
+        <button id="' . $c['module'] . '" class="module btn btn-link" data-toggle="collapse" data-target="#collapse' . $c['module'] . '" aria-expanded="false" aria-controls="collapse' . $c['module'] . '">
         Module ' . $c['module'] . '
 
         </button>
@@ -141,7 +141,7 @@ $user = $_SESSION['uid'];
             <!-- <th scope="col">Handle</th> -->
             </tr>
         </thead>
-        <tbody>';
+        <tbody id="sessions">';
 
       // require dbconnect.php;
 
@@ -220,8 +220,43 @@ $user = $_SESSION['uid'];
   });
     </script> -->
 
-  <!-- -------------------modal1 javascript ------------------- -->
+
+<!-- ------------------load module data from ajax-------------- -->
   <script>
+      // jQuery.noConflict();
+    // sess = document.getElementsByClassName("module");
+    // Array.from(sess).forEach((element) => {
+    //   element.addEventListener("click", (e) => {
+
+    //     console.log(e.target.parentNode.id)
+
+    //     var course_id = e.target.parentNode.id;
+    //     var module_no = e.target.id;
+        
+
+    //     $("#sessions").load("course_modules.php",{
+
+    //       course: course_id,
+    //       module: module_no
+
+    //     });
+
+
+
+
+
+    //   })
+    
+    
+    // });
+
+
+
+
+  
+
+  // <!-- -------------------modal1 javascript ------------------- -->
+  
     jQuery.noConflict();
     edits = document.getElementsByClassName('edit');
     Array.from(edits).forEach((element) => {
