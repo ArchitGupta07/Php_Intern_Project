@@ -147,29 +147,29 @@ $user = $_SESSION['uid'];
 
 
 
-      $course_code = $_GET['course'];
-      $user = $_SESSION['uid'];
+      // $course_code = $_GET['course'];
+      // $user = $_SESSION['uid'];
 
 
-      $sql = "SELECT * FROM courses WHERE module = '{$c['module']}' AND course_code = '$course_code' ";
-      $data = mysqli_query($conn, $sql);
+      // $sql = "SELECT * FROM courses WHERE module = '{$c['module']}' AND course_code = '$course_code' ";
+      // $data = mysqli_query($conn, $sql);
 
       
 
-      while ($prof = mysqli_fetch_assoc($data)) {
-        $check = "SELECT * FROM attendance WHERE uid = '$user' AND cid = '" . $prof['cid'] . "'";
-        echo " <tr>
-                <th scope='row'>" . $prof['session_no'] . " </th>;
-                <td>" . $prof['title'] . "</td>
-                <td>" . $prof['mode'] . "</td>
+      // while ($prof = mysqli_fetch_assoc($data)) {
+      //   $check = "SELECT * FROM attendance WHERE uid = '$user' AND cid = '" . $prof['cid'] . "'";
+      //   echo " <tr>
+      //           <th scope='row'>" . $prof['session_no'] . " </th>;
+      //           <td>" . $prof['title'] . "</td>
+      //           <td>" . $prof['mode'] . "</td>
 
                 
                 
-                <td>  <button id='" . $prof['cid'] . "' class='edit'>Download Pdf</button> </td>
+      //           <td>  <button id='" . $prof['cid'] . "' class='edit'>Download Pdf</button> </td>
                 
                 
-                </tr>";
-      }
+      //           </tr>";
+      // }
 
 
 
@@ -224,31 +224,31 @@ $user = $_SESSION['uid'];
 <!-- ------------------load module data from ajax-------------- -->
   <script>
       // jQuery.noConflict();
-    // sess = document.getElementsByClassName("module");
-    // Array.from(sess).forEach((element) => {
-    //   element.addEventListener("click", (e) => {
+    sess = document.getElementsByClassName("module");
+    Array.from(sess).forEach((element) => {
+      element.addEventListener("click", (e) => {
 
-    //     console.log(e.target.parentNode.id)
+        console.log(e.target.parentNode.id)
 
-    //     var course_id = e.target.parentNode.id;
-    //     var module_no = e.target.id;
+        var course_id = e.target.parentNode.id;
+        var module_no = e.target.id;
         
 
-    //     $("#sessions").load("course_modules.php",{
+        $("#sessions").load("course_modules.php",{
 
-    //       course: course_id,
-    //       module: module_no
+          course: course_id,
+          module: module_no
 
-    //     });
-
-
+        });
 
 
 
-    //   })
+
+
+      })
     
     
-    // });
+    });
 
 
 
@@ -257,7 +257,7 @@ $user = $_SESSION['uid'];
 
   // <!-- -------------------modal1 javascript ------------------- -->
   
-    jQuery.noConflict();
+    // jQuery.noConflict();
     edits = document.getElementsByClassName('edit');
     Array.from(edits).forEach((element) => {
       element.addEventListener("click", (e) => {
