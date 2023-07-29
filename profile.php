@@ -5,6 +5,7 @@ require_once 'config.php';
 
 
 
+
 // // authenticate code from Google OAuth Flow
 // if (isset($_GET['code'])) {
 //     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
@@ -76,6 +77,7 @@ require_once 'config.php';
 //     // now you can use this profile info to create account in your website and make user logged in.
 //   }else{
 session_start();
+include "./fixed_assets/navbar.php";
 
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
@@ -188,23 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 <!-- -------------------------------------------------------------------------------- -->
 
-<!doctype html>
-<html lang="ar" dir="rtl">
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
-
-
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  <title>Document</title>
 
   <style>
     /* $body: #09000b;
@@ -266,9 +252,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
     } */
   </style>
-</head>
 
-<body>
+
+
   <!-- Button trigger modal -->
   <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
@@ -501,10 +487,19 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 		})
 	</script>
 
+</main>
+  </div>
+</div>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script><script src="dashboard.js"></script></body>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
 </html>
+
+
 <!-- -------------------------------------------------------------------------------- -->
 
 
