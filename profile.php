@@ -371,7 +371,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   </div>
 </div>
 <div class="forms row justify-content-center">
-  <div class="container1 bg-secondary border rounded p-3" style="width: 300px; margin:auto">
+  
+  <div class="container1 bg-info border rounded p-3" style="width: 500px; margin:auto">
+    <h4>Add Course</h4>
+
+    
+  
     <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">Course Code</label>
@@ -402,7 +407,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
   </div>
-  <div class="container1 bg-secondary border rounded p-3" style="width: 300px; margin:auto">
+  <div class="container1 bg-info border rounded p-3" style="width: 500px; margin:auto">
+    
+    <h4>Add Assignment/Quiz</h4>
     <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
 
 

@@ -2,25 +2,11 @@
 
 
 
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <title></title>
-</head>
-
-<body>
 <?php
 require "dbconnect.php";
 
 session_start();
+include "./fixed_assets/navbar.php";
 
 $user = $_SESSION['uid'];
 
@@ -143,33 +129,33 @@ $user = $_SESSION['uid'];
         </thead>
         <tbody id="sessions">';
 
-      // require dbconnect.php;
+      require "dbconnect.php";
 
 
 
-      // $course_code = $_GET['course'];
-      // $user = $_SESSION['uid'];
+      $course_code = $_GET['course'];
+      $user = $_SESSION['uid'];
 
 
-      // $sql = "SELECT * FROM courses WHERE module = '{$c['module']}' AND course_code = '$course_code' ";
-      // $data = mysqli_query($conn, $sql);
+      $sql = "SELECT * FROM courses WHERE module = '{$c['module']}' AND course_code = '$course_code' ";
+      $data = mysqli_query($conn, $sql);
 
       
 
-      // while ($prof = mysqli_fetch_assoc($data)) {
-      //   $check = "SELECT * FROM attendance WHERE uid = '$user' AND cid = '" . $prof['cid'] . "'";
-      //   echo " <tr>
-      //           <th scope='row'>" . $prof['session_no'] . " </th>;
-      //           <td>" . $prof['title'] . "</td>
-      //           <td>" . $prof['mode'] . "</td>
+      while ($prof = mysqli_fetch_assoc($data)) {
+        $check = "SELECT * FROM attendance WHERE uid = '$user' AND cid = '" . $prof['cid'] . "'";
+        echo " <tr>
+                <th scope='row'>" . $prof['session_no'] . " </th>;
+                <td>" . $prof['title'] . "</td>
+                <td>" . $prof['mode'] . "</td>
 
                 
                 
-      //           <td>  <button id='" . $prof['cid'] . "' class='edit'>Download Pdf</button> </td>
+                <td>  <button id='" . $prof['cid'] . "' class='edit'>Download Pdf</button> </td>
                 
                 
-      //           </tr>";
-      // }
+                </tr>";
+      }
 
 
 
@@ -224,31 +210,31 @@ $user = $_SESSION['uid'];
 <!-- ------------------load module data from ajax-------------- -->
   <script>
       // jQuery.noConflict();
-    sess = document.getElementsByClassName("module");
-    Array.from(sess).forEach((element) => {
-      element.addEventListener("click", (e) => {
+    // sess = document.getElementsByClassName("module");
+    // Array.from(sess).forEach((element) => {
+    //   element.addEventListener("click", (e) => {
 
-        console.log(e.target.parentNode.id)
+    //     console.log(e.target.parentNode.id)
 
-        var course_id = e.target.parentNode.id;
-        var module_no = e.target.id;
+    //     var course_id = e.target.parentNode.id;
+    //     var module_no = e.target.id;
         
 
-        $("#sessions").load("course_modules.php",{
+    //     $("#sessions").load("course_modules.php",{
 
-          course: course_id,
-          module: module_no
+    //       course: course_id,
+    //       module: module_no
 
-        });
-
-
+    //     });
 
 
 
-      })
+
+
+    //   })
     
     
-    });
+    // });
 
 
 
@@ -257,7 +243,7 @@ $user = $_SESSION['uid'];
 
   // <!-- -------------------modal1 javascript ------------------- -->
   
-    // jQuery.noConflict();
+    jQuery.noConflict();
     edits = document.getElementsByClassName('edit');
     Array.from(edits).forEach((element) => {
       element.addEventListener("click", (e) => {
@@ -336,6 +322,17 @@ $user = $_SESSION['uid'];
   <!-- -------------------modal2 javascript ------------------- -->
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
+
+
+
+
+  </main>
+</div>
+</div>
+<!-- <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
+<!-- <script src="dashboard.js"></script> -->
 
 
 
