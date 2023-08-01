@@ -235,14 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     <select id="modules" name="modules" class="form-select">
 
                         <option selected>Choose...</option>;
-                        <?php
-                        $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
-                        $c = mysqli_query($conn, $sql1);
-                        // $proj = mysqli_fetch_assoc($p_data);
-                        while ($module = mysqli_fetch_assoc($c)) {
-                            echo "<option>" . $module['module'] . "</option>";
-                        }
-                        ?>
+                       
                     </select>
                 </div>
 
@@ -381,7 +374,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     console.log(modules);
                     modules = JSON.parse(modules);
                     $('#modules').empty();
+                    $('#modules').append('<option>Choose...</option>')
                     modules.forEach(function(module) {
+                        
                         $('#modules').append('<option>' + module.module + '</option>')
                     })
                 })

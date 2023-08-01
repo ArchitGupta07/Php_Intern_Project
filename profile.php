@@ -436,15 +436,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         <label for="modules" class="form-label">Module</label>
         <select id="modules" name="modules" class="form-select">
 
-          <option selected>Choose...</option>;
-          <?php
-          $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
-          $c = mysqli_query($conn, $sql1);
-          // $proj = mysqli_fetch_assoc($p_data);
-          while ($module = mysqli_fetch_assoc($c)) {
-            echo "<option>" . $module['module'] . "</option>";
-          }
-          ?>
+        
         </select>
       </div>
       <div class="col-md-6 py-3">
@@ -478,7 +470,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
 
 
 <script>
@@ -508,8 +503,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   })
 </script>
 <script type="text/javascript">
+  console.log('course')
   $(document).ready(function() {
     $("#courses").change(function() {
+      console.log('course1')
       var cid = $("#courses").val();
       console.log(cid)
       $.ajax({
@@ -533,7 +530,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </div>
 <!-- <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
+
 <!-- <script src="dashboard.js"></script> -->
 
 
