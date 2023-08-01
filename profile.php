@@ -475,6 +475,30 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
 
+<script type="text/javascript">
+  // jQuery.noConflict();
+  console.log('course')
+  $(document).ready(function() {
+    $("#courses").change(function() {
+      console.log('course1')
+      var cid = $("#courses").val();
+      console.log(cid)
+      $.ajax({
+        url: 'related_dropdown.php',
+        method: 'post',
+        data: 'cid=' + cid
+      }).done(function(modules) {
+        console.log(modules);
+        modules = JSON.parse(modules);
+        $('#modules').empty();
+        modules.forEach(function(module) {
+          $('#modules').append('<option>' + module.module + '</option>')
+        })
+      })
+    })
+  })
+</script>
+
 
 <script>
   edits = document.getElementsByClassName('edit');
@@ -502,28 +526,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     })
   })
 </script>
-<script type="text/javascript">
-  console.log('course')
-  $(document).ready(function() {
-    $("#courses").change(function() {
-      console.log('course1')
-      var cid = $("#courses").val();
-      console.log(cid)
-      $.ajax({
-        url: 'related_dropdown.php',
-        method: 'post',
-        data: 'cid=' + cid
-      }).done(function(modules) {
-        console.log(modules);
-        modules = JSON.parse(modules);
-        $('#modules').empty();
-        modules.forEach(function(module) {
-          $('#modules').append('<option>' + module.module + '</option>')
-        })
-      })
-    })
-  })
-</script>
+
 
 </main>
 </div>

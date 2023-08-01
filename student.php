@@ -114,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </head>
 
 <body>
+   
     <!-- ------------------------Quiz Modal---------------------------------- -->
 
     <!-- <div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
