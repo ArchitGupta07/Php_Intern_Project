@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 
-    if($_POST['type'] =='quiz') {
+    if($_POST['type'] =='Quiz') {
       header("location: quiz_maker.php?course=$course&module=$module&eid=$eid");
 
 
@@ -239,11 +239,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     }
 
     .profile {
-      max-width: 300px;
+      max-width: 800px;
       margin: 0 auto;
-      background-color: #ffffff;
+      background-color: #27d1bd;
       padding: 30px;
-      border-radius: 10px;
+      border-radius: 30px;
       position: relative;
       display: grid;
       justify-content: start;
@@ -331,7 +331,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <!-- -------------------------profile-------------------------------- -->
 
   <div class="container1 ">
-    <div class="profile border rounded ">
+    <div class="profile" style="width: 20000px;">
       <!-- <div class="image"></div> -->
 
       <?php
@@ -463,8 +463,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           <select id="type" name="type" class="form-select">
 
             <option selected>Choose...</option>;         
-            <option>assignment</option>";   
-            <option>quiz</option>";   
+            <option>Assignment</option>";   
+            <option>Quiz</option>";   
             
           </select>
         </div>

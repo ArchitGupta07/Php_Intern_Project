@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     exit;
 }
 
-echo $_SESSION['username'];
+// echo $_SESSION['username'];
 $user = $_SESSION['username'];
 
 $sql = "Select * from profile where username = '$user'";
@@ -39,11 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login Form Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
     <title></title>
@@ -73,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     $('#modules').empty();
                     $('#modules').append('<option>Choose...</option>')
                     modules.forEach(function(module) {
-                        
+
                         $('#modules').append('<option>' + module.module + '</option>')
                     })
                 })
@@ -88,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $dark: #0a0a0a; */
 
         body {
-            background-color: green;
+            background-color: white;
             font-family: "Nunito", sans-serif;
         }
 
@@ -98,11 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
 
         .profile {
-            max-width: 300px;
+            max-width: 800px;
             margin: 0 auto;
-            background-color: #ffffff;
+            background-color: #27d1bd;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 30px;
             position: relative;
             display: grid;
             justify-content: start;
@@ -135,18 +136,24 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             background-position: center center;
         }
 
+
+
         /* &:hover {
         .image {
         transform: scale(1.5);
         border-radius: 10px;
         }
     } */
+
+
+    /* ----------------UPdates--------------------- */
+    
     </style>
 </head>
 
 <body>
-<?php include "./fixed_assets/navbar2.php"; ?>
-   
+    <?php include "./fixed_assets/navbar.php"; ?>
+
     <!-- ------------------------Quiz Modal---------------------------------- -->
 
     <!-- <div class="modal fade" tabindex="-1" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
@@ -217,6 +224,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         </div>
     </div> -->
 
+   
+
     <!-- -----------------------------Profile------------------------------ -->
 
     <div class="container1">
@@ -242,8 +251,44 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         </div>
     </div>
 
-    <div class="check" style="display: flex;">
-        <div class="container1 bg-secondary border rounded p-3 float-right" style="width: 300px; margin:auto">
+    <hr>
+     <!-- -------------Updates------------------- -->
+     <div class="my-3 p-3 bg-body border rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
+        <div class="d-flex text-body-secondary pt-3">
+          <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+          <p class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark">@username</strong>
+            Some representative placeholder content, with some information about this user. Imagine this being some sort of status update, perhaps?
+          </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-3">
+          <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"/><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+          <p class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark">@username</strong>
+            Some more representative placeholder content, related to this other user. Another status update, perhaps.
+          </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-3">
+          <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"/><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+          <p class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark">@username</strong>
+            This user also gets some representative placeholder content. Maybe they did something interesting, and you really want to highlight this in the recent updates.
+          </p>
+        </div>
+        <small class="d-block text-end mt-3">
+          <a href="#">All updates</a>
+        </small>
+      </div>
+    <hr>
+    <hr>
+    <center>
+        <h3>Your Evaluations</h3>
+    </center>
+    <hr>
+
+    <div class="check" style="display: flex; padding:20px">
+        <div class="container1 bg-info border rounded p-3 float-right" style="width: 300px; margin:auto">
             <form action="/Php_Learning/student.php" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6">
                     <label for="courses" class="form-label">Course</label>
@@ -268,17 +313,20 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     <select id="modules" name="modules" class="form-select">
 
                         <option selected>Choose...</option>;
-                       
+
                     </select>
                 </div>
 
-                <button type="submit" name="eval_select" id="eval_select">Submit</button>
+                <center>
+
+                    <button type="submit" name="eval_select" id="eval_select">Submit</button>
+                </center>
             </form>
 
 
         </div>
 
-        <div class="container ">
+        <div class="container" style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
 
             <table class="table " id="myTable">
                 <thead>
@@ -312,7 +360,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                             $user = $_SESSION['uid'];
                             $sql = "Select * from evaluation where course='$course' AND module='$module'";
                             $data = mysqli_query($conn, $sql);
-                            
                         }
                     } else {
                         $user = $_SESSION['uid'];
@@ -334,21 +381,21 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
                         echo " <tr>
-                                <th scope='row'>" . $prof['type'] . " </th>;";
+                                <th scope='row'>" . $prof['type'] . " </th>";
 
                         if ($prof['deadline'] > $currentDate || (isset($marks['action']) && $marks['action'] == 'submitted')) {
 
                             if ($prof['type'] == 'Assignment') {
 
                                 if (isset($marks['action']) && $marks['action'] == 'submitted') {
-                                    echo "<td>" . $marks['action'] . "</td>;";
+                                    echo "<td>" . $marks['action'] . "</td>";
                                 } else {
                                     echo  "<td>  <button class='assign' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
                                 }
                             } else {
 
                                 if (isset($marks['action']) && $marks['action'] == 'submitted') {
-                                    echo "<td>" . $marks['action'] . "</td>;";
+                                    echo "<td>" . $marks['action'] . "</td>";
                                 } else {
 
                                     echo  "<td>  <button class='quiz' id= '" . $prof['eid'] . "' href='/edit'>Submit</button> </td>";
@@ -364,9 +411,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                         echo    "<td>" . $prof['start_date'] . "</td>
                                 <td>" . $prof['deadline'] . "</td>";
                         if (isset($marks['marks'])) {
-                            echo "<td>" . $marks['marks'] . "</td>;";
+                            echo "<td>" . $marks['marks'] . "</td>";
                         } else {
-                            echo "<td>Pending</td>;";
+                            echo "<td>Pending</td>";
                         }
                         echo " <td>  <button class='down_assign' id= '" . $prof['eid'] . "' href='/edit'>down_assign</button> </td>
                                 </tr>";
@@ -382,9 +429,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 
-   
 
-    
+
+
 
 
 

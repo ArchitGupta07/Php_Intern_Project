@@ -53,20 +53,23 @@ else{
 
 ?>
 
-<!doctype html>
-<html lang="ar" dir="rtl">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
 
     <title></title>
   </head>
   <body>
+  <?php include "./fixed_assets/navbar.php"; ?>
         <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
@@ -111,7 +114,11 @@ else{
 </div>
     
 <!-- ---------------------Table -------------------- -->
-  <div class="container">
+
+<center>
+  <h3>Edit Database</h3>
+</center>
+  <div class="container" style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
    
     <table class="table" id="myTable">
       <thead>
@@ -135,7 +142,7 @@ else{
 
     while($prof = mysqli_fetch_assoc($data)){
     echo " <tr>
-    <th scope='row'>" . $prof['uid'] ." </th>;
+    <th scope='row'>" . $prof['uid'] ." </th>
     <td>" . $prof['first_name'] . "</td>
     <td>" . $prof['last_name'] . "</td>
     <td>" . $prof['email'] . "</td>
@@ -164,8 +171,14 @@ else{
 <br>
 <hr>
 
-<!-- ----------------------fetching data by name--------------------------- -->
-  <div class="container bg-secondary border rounded">
+<!-- ----------------------fetching data by criteria--------------------------- -->
+<hr>
+<hr>
+<center>
+  <h3>Search Data</h3>
+</center>
+<hr>
+  <div class="container bg-secondary " style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
   <form action="/Php_Learning/admin.php" method="POST">
    
     <table class="table" id="myTable2">
@@ -205,7 +218,7 @@ else{
 
         while($prof1 = mysqli_fetch_assoc($fetch)){
         echo " <tr>
-        <th scope='row'>" . $prof1['uid'] ." </th>;
+        <th scope='row'>" . $prof1['uid'] ." </th>
         <td>" . $prof1['first_name'] . "</td>
         <td>" . $prof1['last_name'] . "</td>
         <td>" . $prof1['email'] . "</td>
@@ -216,17 +229,33 @@ else{
       ?>     
       </tbody>
     </table>
-    <form action="/Php_Learning/admin.php" method="POST">
+    <hr>
+    <hr>
+    <form action="/Php_Learning/admin.php" method="POST" style="display: flex;">
 
-    <h5>Sort By</h5>
-        <div class="criteria">
-            <label for="">Criteria</label>
-            <input type="text" name="criteria" id="criteria">
+    
+
+          <h5>Sort By</h5>
+          <div style="display: flex;">
+    
+        <div class="criteria" style="width: 200px;">
+        
+          <label for="type" class="form-label">Criteria</label>
+          <select id="criteria" name="criteria" class="form-select">
+
+            <option selected>Choose...</option>         
+            <option>role</option>  
+            <option>first_name</option>  
+            <option>last_name</option>   
+            
+          </select>
+        
         </div>
 
         <div class="first_name">
             <label for="">Value</label>
             <input type="text" name="firstsort" id="firstsort">
+        </div>
         </div>
         <button type="submit" class="btn btn-primary">Sort</button>
     </form>
