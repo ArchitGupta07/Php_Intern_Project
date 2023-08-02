@@ -32,7 +32,7 @@
             while ($ques = mysqli_fetch_assoc($result)) {
             echo '<form action="/Php_Learning/extras.php?student=' . $_SESSION['uid'] . '&eid='.$c.'" method="POST" enctype="multipart/form-data">
                         <div class="col-12">
-                        <p class="fw-bold mt-5">'.$ques['qid'].') '. $ques['question'].'</p>
+                        <p class="fw-bold mt-5">'.$ques['qid'].') </p>
                             <div>
                                 <div class="row">
                                     <div class="col-md-6"> <input type="radio" name="'.$ques['qid'].'" id="'.$ques['qid'].'" value="a"> <label for="five" class="box fifth w-100">
