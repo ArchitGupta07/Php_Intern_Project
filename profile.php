@@ -421,6 +421,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     <div class="container1 bg-info border rounded p-3" style="width: 600px; margin:auto">
       <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
+        <div class="wrap grid justify-content-center  p-3">
 
 
        
@@ -475,6 +476,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         <div class="col-md-2 py-3">
         <input type="file" name='myfile'>
         </div>
+        </div>
+
        
         <div class="col-12">
           <button type="submit" name="new_eval" id="new_eval" class="btn btn-primary">Submit</button>

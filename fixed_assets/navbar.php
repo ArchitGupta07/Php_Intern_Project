@@ -153,9 +153,9 @@
   </div>
 </header>
 
-<div class="container-fluid">
+<div class="container-fluid ">
   <div class="row">
-    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary ">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-info  ">
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>

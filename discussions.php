@@ -53,6 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <style>
+
+
+
+
         /* -------comment section---------------- */
 
 .comment-box,
@@ -64,10 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 }
 
 .comment-session{
+  padding: 20px;
   width: 600px;
   height: auto;
   margin: 0 auto;
-  /* background: #009cff; */
+  /* background: whitesmoke; */
 
 }
 .post-comment{
@@ -268,7 +273,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   </head>
   <body>
   <?php include "./fixed_assets/navbar.php"; ?>
-  <div class="comment-session">
+  
+  <div class="comment-session " >
 
   <?php
 
