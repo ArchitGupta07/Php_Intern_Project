@@ -37,19 +37,50 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 
-<!doctype html>
-<html lang="ar" dir="rtl">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
+    <title>Login Form Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
     <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        // jQuery.noConflict();
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#courses").change(function() {
+                var cid = $("#courses").val();
+                console.log(cid)
+                $.ajax({
+                    url: 'related_dropdown.php',
+                    method: 'post',
+                    data: 'cid=' + cid
+                }).done(function(modules) {
+                    console.log(modules);
+                    modules = JSON.parse(modules);
+                    $('#modules').empty();
+                    $('#modules').append('<option>Choose...</option>')
+                    modules.forEach(function(module) {
+                        
+                        $('#modules').append('<option>' + module.module + '</option>')
+                    })
+                })
+            })
+        })
+    </script>
+
 
     <style>
         /* $body: #09000b;
@@ -57,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $dark: #0a0a0a; */
 
         body {
-            background-color: red;
+            background-color: green;
             font-family: "Nunito", sans-serif;
         }
 
@@ -114,6 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </head>
 
 <body>
+<?php include "./fixed_assets/navbar2.php"; ?>
    
     <!-- ------------------------Quiz Modal---------------------------------- -->
 
@@ -350,41 +382,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+   
 
-    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-    <script>
-        // jQuery.noConflict();
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#courses").change(function() {
-                var cid = $("#courses").val();
-                console.log(cid)
-                $.ajax({
-                    url: 'related_dropdown.php',
-                    method: 'post',
-                    data: 'cid=' + cid
-                }).done(function(modules) {
-                    console.log(modules);
-                    modules = JSON.parse(modules);
-                    $('#modules').empty();
-                    $('#modules').append('<option>Choose...</option>')
-                    modules.forEach(function(module) {
-                        
-                        $('#modules').append('<option>' + module.module + '</option>')
-                    })
-                })
-            })
-        })
-    </script>
-
+    
 
 
 

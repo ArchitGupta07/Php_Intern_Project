@@ -2,9 +2,6 @@
 
 require "dbconnect.php";
 session_start();
-include "./fixed_assets/navbar.php";
-
-
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     if (isset($_POST['post_comment'])) {
 
@@ -46,8 +43,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 ?>
 
-<style>
 
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
         /* -------comment section---------------- */
 
 .comment-box,
@@ -260,15 +265,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 }
 
     </style>
- 
-    <div class="">
-      <h3>Let's Discuss</h3>
-    </div>
-  <div class="comment-session py-5">
+  </head>
+  <body>
+  <?php include "./fixed_assets/navbar.php"; ?>
+  <div class="comment-session">
 
   <?php
 
-$sql = "SELECT * FROM discussions WHERE parent_id IS NULL";
+$sql = "Select * from discussions";
 $comments = mysqli_query($conn, $sql);
 
 // $proj = mysqli_fetch_assoc($p_data);
@@ -338,14 +342,12 @@ while ($comm = mysqli_fetch_assoc($comments)) {
   ';
 }}
 ?>
-  <div class="comment-box" >
+  <div class="comment-box">
     <div class="user">
       <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
       <div class="name"><?php echo $_SESSION['username']; ?></div>
 
     </div>
-    
-    
     <form action="./discussions.php" method="post">
       
       <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
@@ -385,17 +387,5 @@ while ($comm = mysqli_fetch_assoc($comments)) {
     });
   }
   </script>
- </main>
-</div>
-</div>
-<!-- <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
-<!-- <script src="dashboard.js"></script> -->
-
-
-
-
-</body>
-
+  </body>
 </html>
