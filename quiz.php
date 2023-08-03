@@ -32,7 +32,7 @@
             
 
             while ($ques = mysqli_fetch_assoc($result)) {
-            echo '<form action="/Php_Learning/extras.php?student=' . $_SESSION['uid'] . '&eid='.$c.'" method="POST" enctype="multipart/form-data">
+            echo '<form action="/Php_Learning/quiz_marks.php?student=' . $_SESSION['uid'] . '&eid='.$c.'" method="POST" enctype="multipart/form-data">
                         <div class="col-12">
                         <p class="fw-bold mt-5">'.$count.') </p>
                             <div>

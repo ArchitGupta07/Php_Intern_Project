@@ -26,15 +26,16 @@
 .sidebar .nav-link {
   font-size: .875rem;
   font-weight: 500;
+  color: #eff2f5;
 }
 
 .sidebar .nav-link.active {
-  color: #2470dc;
+  color: #323633;
 }
 
 .sidebar-heading {
   font-size: .75rem;
-}
+} 
 
 /*
  * Navbar
@@ -132,7 +133,7 @@
   <body> --> 
     
 
-<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+<header class="navbar sticky-top  flex-md-nowrap p-0 shadow" style="background-color: #6528e0;" data-bs-theme="dark">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Company name</a>
 
   <ul class="navbar-nav flex-row d-md-none">
@@ -149,12 +150,12 @@
 
 <div class="container-fluid ">
   <div class="row">
-    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-info  ">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0  " style="background-color: #7624e9;">
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-        <div class="offcanvas-header">
+        <!-- <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
-        </div>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button> 
+        </div> -->
         <div class=" d-md-flex flex-column p-0 position-fixed  ">
           <ul class="nav flex-column">
             <li class="nav-item">

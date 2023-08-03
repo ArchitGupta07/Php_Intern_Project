@@ -1,5 +1,11 @@
 <?php
 require "dbconnect.php";
+session_start();
+
+if (!isset($_SESSION['count'])) {
+    $_SESSION['count'] = 1;
+    $count = $_SESSION['count'];
+}
 
 
 
@@ -8,14 +14,17 @@ require "dbconnect.php";
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     if (isset($_POST['add']) && $_POST['ques'] != "") {
+
+        
         $course = $_POST['course'];
         $module = $_POST['module'];
         $eid = $_POST['eid'];
-        $question = $_POST['ques'];
+        $question = $_SESSION['count'];
         $correct = $_POST['correct'];
 
         $sql = "INSERT INTO `quizzes` ( `course`,`module`,`eid`, `question`, `correct`) VALUES ('$course', '$module','$eid', '$question', '$correct')";
         $data = mysqli_query($conn, $sql);
+        $_SESSION['count']=$_SESSION['count']+1;
 
 
     } elseif (isset($_POST['done'])) {
@@ -25,11 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $module = $_POST['module'];
         $eid = $_POST['eid'];
         if (isset($_POST['ques']) && $_POST['ques'] != "") {
-            $question = $_POST['ques'];
+            
+            $question = $_SESSION['count'];
             $correct = $_POST['correct'];
 
             $sql = "INSERT INTO `quizzes` ( `course`,`module`,`eid`, `question`, `correct`) VALUES ('$course', '$module','$eid', '$question', '$correct')";
             $data = mysqli_query($conn, $sql);
+            $_SESSION['count']=$_SESSION['count']+1;
         }
         header("location: profile.php");
     }
@@ -64,16 +75,44 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             <input type="hidden" name="module" value="<?php echo $_GET['module']; ?>">
             <input type="hidden" name="eid" value="<?php echo $_GET['eid']; ?>">
             <div class="row mb-3">
-                <label for="ques" class="col-sm-2 col-form-label">Question</label>
+                <h4><label for="ques" class="col-sm-2 col-form-label">
+                    <?php echo $_SESSION['count']; ?> Question</label></h4>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="ques" id="ques">
+                    <input type="hidden" class="form-control" name="ques" id="ques" value="<?php echo $_SESSION['count']; ?>">
                 </div>
             </div>
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
                 <label for="correct" class="col-sm-2 col-form-label">Correct Option</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="correct" id="correct">
                 </div>
+            </div> -->
+            <div class="row mb-3">
+            <fieldset>
+    <legend>Please select correct answer to the question:</legend>
+    <div style="padding: 30px;">
+
+    <div class="col-md-6">
+    <input type="radio" id="correct" name="correct" value="a" />
+      <label for="contactChoice1">A</label>
+    </div>
+
+    <div class="col-md-6">
+
+      <input type="radio" id="correct" name="correct" value="b" />
+      <label for="contactChoice2">B</label>
+      </div>
+      <div class="col-md-6">
+      <input type="radio" id="correct" name="correct" value="c" />
+      <label for="contactChoice3">C</label>
+      </div>
+      <div class="col-md-6">
+      <input type="radio" id="correct" name="correct" value="d" />
+      <label for="contactChoice3">D</label>
+      </div>
+    </div>
+  
+  </fieldset>
             </div>
 
             <button type="submit" name="add" id="add" class="btn btn-primary">Add</button>
