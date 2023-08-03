@@ -101,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         .profile {
             max-width: 800px;
             margin: 0 auto;
+            background-color: #b073ed;
             background-color: #27d1bd;
             padding: 30px;
             border-radius: 30px;

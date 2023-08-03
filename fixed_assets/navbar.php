@@ -143,13 +143,11 @@
         <svg class="bi"><use xlink:href="#list"/></svg>
       </button>
     </li>
-  </ul>
-
-  
+  </ul>  
 </header>
 
-<div class="container-fluid ">
-  <div class="row">
+<!-- <div class="container-fluid ">-->
+  <div class="row"> 
     <div class="sidebar border border-right col-md-3 col-lg-2 p-0  " style="background-color: #7624e9;">
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <!-- <div class="offcanvas-header">
@@ -159,7 +157,7 @@
         <div class=" d-md-flex flex-column p-0 position-fixed  ">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="../Php_learning/profile.php">
+              <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="../Php_learning/profile.php">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
                 Dashboard
               </a>
@@ -177,7 +175,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="../Php_learning/discussions.php">
+              <a class="nav-link d-flex align-items-center gap-2 " href="../Php_learning/discussions.php">
                 <svg class="bi"><use xlink:href="#discuss"/></svg>
                 Discussions
               </a>
