@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./files/css/font.css">
 
     <title></title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
@@ -289,7 +290,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <hr>
 
     <div class="check" style="display: flex; padding:20px">
-        <div class="container1 bg-info border rounded p-3 float-right" style="width: 300px; margin:auto">
+        <div class="container1  p-3 float-right" style="width: 300px; margin:auto; background-color: #8ba9ed; border-radius: 20px;">
             <form action="/Php_Learning/student.php" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6">
                     <label for="courses" class="form-label">Course</label>
@@ -327,7 +328,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
         </div>
 
-        <div class="container" style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
+        <div class="container" style="border: hidden ; border-radius: 20px; padding:20px; margin:20px; background-color: #caa2f1;">
 
             <table class="table " id="myTable">
                 <thead>

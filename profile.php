@@ -345,8 +345,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       <?php
       if ($_SESSION['role'] == 'admin') {
 
-        echo '<a href="./admin.php">Go to Admin Page</a>';
-        echo '<a href="./student.php">Go to Student Page</a>';
+        echo '<div class="d-flex space-in-between">
+        <a href="./admin.php">Go to Admin Page -->&nbsp;   </a>
+          <a href="./student.php">Go to Student Page --></a>
+        </div>';
       }elseif($_SESSION['role'] == 'faculty') {
         echo '<a href="./student.php">Go to Student Page</a>';
       }
@@ -374,6 +376,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
         ?>
       </h5>
+      
 
       <!-- <h5>email</h5> -->
       <button class="edit" id="<?php echo $prof['uid']; ?>" href="/edit">Edit</button>
@@ -528,12 +531,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   
       while($prof = mysqli_fetch_assoc($data)){
       echo " <tr>
-      <th scope='row'>" . $prof['uid'] ." </th>
-      <td>" . $prof['first_name'] . "</td>
-      <td>" . $prof['last_name'] . "</td>
-      <td>" . $prof['email'] . "</td>
-      <td>" . $prof['role'] . "</td>
-      <td>  <button class='edit' id= '".$prof['uid']."' href='/edit'>Edit</button> </td>
+      <th scope='row'>" . $prof['cid'] ." </th>
+      <td>" . $prof['eid'] . "</td>
+      <td>" . $prof['student_id'] . "</td>
+      <td>" . $prof['marks'] . "</td>
+      <td>" . $prof['action'] . "</td>
+      <td>  <button class='edit' id= '".$prof['marks_id']."' href='/edit'>Edit</button> </td>
       </tr>" ;
   
   
