@@ -190,44 +190,48 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login Form Design</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
-    <title></title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
-    <script type="text/javascript">
-		$(document).ready(function(){
-			$("#courses").change(function(){
-				var cid = $("#courses").val();
+<head>
+  <title>Login Form Design</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+  <title></title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#courses").change(function () {
+        var cid = $("#courses").val();
         console.log(cid)
-				$.ajax({
-					url: 'related_dropdown.php',
-					method: 'post',
-					data: 'cid=' + cid
-				}).done(function(modules){
-					console.log(modules);
-					modules = JSON.parse(modules);
-					$('#modules').empty();
+        $.ajax({
+          url: 'related_dropdown.php',
+          method: 'post',
+          data: 'cid=' + cid
+        }).done(function (modules) {
+          console.log(modules);
+          modules = JSON.parse(modules);
+          $('#modules').empty();
           $('#modules').append('<option>Choose...</option>')
-					modules.forEach(function(module){
-						$('#modules').append('<option>' + module.module + '</option>')
-					})
-				})
-			})
-		})
-	</script>
-    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script>
-        // jQuery.noConflict();
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
+          modules.forEach(function (module) {
+            $('#modules').append('<option>' + module.module + '</option>')
+          })
+        })
+      })
+    })
+  </script>
+  <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script>
+    // jQuery.noConflict();
+    $(document).ready(function () {
+      $('#myTable').DataTable();
+    });
+  </script>
 
   <title>Document</title>
 
@@ -255,6 +259,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       position: relative;
       display: grid;
       justify-content: start;
+    }
+
+    .user-image img{
+      height: 300px;
+    width: 300px;
+    margin-right: 10px;
+    border-radius: 20%;
     }
 
     h2 {
@@ -294,7 +305,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </head>
 
 <body>
-<?php include "./fixed_assets/navbar.php"; ?>
+  <?php include "./fixed_assets/navbar.php"; ?>
 
   <!-- Button trigger modal -->
   <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -302,7 +313,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </button> -->
 
   <!-- Modal -->
-  <div class="modal fade" tabindex="-1" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal fade" tabindex="-1" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -339,10 +351,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <!-- -------------------------profile-------------------------------- -->
 
   <div class="container1 ">
-    <div class="profile" style="width: 20000px;">
+    <div class="profile d-flex justify-content-center" style="width: 20000px;">
       <!-- <div class="image"></div> -->
-
-      <?php
+      <div>
+        <?php
       if ($_SESSION['role'] == 'admin') {
 
         echo '<div class="d-flex space-in-between">
@@ -353,13 +365,23 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         echo '<a href="./student.php">Go to Student Page</a>';
       }
       ?>
-      <h2><?php echo $_SESSION['username'] ?></h2>
-      <h5> <?php echo $prof['email'] ?> </h5>
-      <h5><?php echo $prof['mobile_no'] ?></h5>
-      <h5> <?php echo $prof['role'] ?></h5>
-      <h5> <?php echo $prof['uid'] ?></h5>
-      <h5> Courses: -
-        <?php
+        <h2>
+          <?php echo $_SESSION['username'] ?>
+        </h2>
+        <h5>
+          <?php echo $prof['email'] ?>
+        </h5>
+        <h5>
+          <?php echo $prof['mobile_no'] ?>
+        </h5>
+        <h5>
+          <?php echo $prof['role'] ?>
+        </h5>
+        <h5>
+          <?php echo $prof['uid'] ?>
+        </h5>
+        <h5> Courses: -
+          <?php
         // session_start();
 
         $uid1 = $_SESSION['uid'];
@@ -375,47 +397,53 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           echo ", ";
         }
         ?>
-      </h5>
-      
+        </h5>
 
-      <!-- <h5>email</h5> -->
-      <button class="edit" id="<?php echo $prof['uid']; ?>" href="/edit">Edit</button>
+
+        <!-- <h5>email</h5> -->
+        <button class="edit" id="<?php echo $prof['uid']; ?>" href="/edit">Edit</button>
+      </div>
+
+      <div>
+        <div class="user-image"><img src="./files/images/arc.jpg" alt=""></div>
+        <!-- <img src="./files/images/arc.jpg" alt="Girl in a jacket" width="500" height="600"> -->
+      </div>
 
     </div>
   </div>
   <div class="forms grid justify-content-center p-5">
     <hr>
     <center>
-    <h5>Add Courses</h5>
+      <h5>Add Courses</h5>
     </center>
     <hr>
     <div class="container1 bg-info border rounded p-3" style="width: 600px; margin:auto">
       <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
         <div class=" align-items justify-content-center">
-        <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Course Code</label>
-          <input type="text" class="form-control" id="course_code" name="course_code" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Module</label>
-          <input type="text" class="form-control" id="module" name="module" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Session No</label>
-          <input type="text" class="form-control" id="session" name="session" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" name="title" placeholder="">
-        </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Mode</label>
-          <input type="text" class="form-control" id="mode" name="mode" placeholder="">
-        </div>
-        <div>
-          <input type="file" name='myfile'>
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Course Code</label>
+            <input type="text" class="form-control" id="course_code" name="course_code" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Module</label>
+            <input type="text" class="form-control" id="module" name="module" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Session No</label>
+            <input type="text" class="form-control" id="session" name="session" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Mode</label>
+            <input type="text" class="form-control" id="mode" name="mode" placeholder="">
+          </div>
+          <div>
+            <input type="file" name='myfile'>
 
-        </div>
+          </div>
         </div>
         <button type="submit" name="course_upload" id="course_upload">Submit</button>
       </form>
@@ -426,7 +454,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <br>
     <hr>
     <center>
-    <h5>Add Assignment/Quizzes</h5>
+      <h5>Add Assignment/Quizzes</h5>
     </center>
     <hr>
 
@@ -435,13 +463,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         <div class="wrap grid justify-content-center  p-3">
 
 
-       
-        <div class="col-md-6">
-          <label for="courses" class="form-label">Course</label>
-          <select id="courses" name="courses" class="form-select">
 
-            <option selected disabled>Choose...</option>
-            <?php
+          <div class="col-md-6">
+            <label for="courses" class="form-label">Course</label>
+            <select id="courses" name="courses" class="form-select">
+
+              <option selected disabled>Choose...</option>
+              <?php
             $use = $_SESSION['username'];
             $courses = "Select distinct(course_code) from courses where creator = '$use'";
             $p_data = mysqli_query($conn, $courses);
@@ -452,14 +480,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
               echo "<option id='".$core['course_code']."' value='".$core['course_code']."'>" . $core['course_code'] . "</option>";
             }
             ?>
-          </select>
-        </div>
-        <div class="col-md-6 py-3">
-          <label for="modules" class="form-label">Module</label>
-          <select id="modules" name="modules" class="form-select">
+            </select>
+          </div>
+          <div class="col-md-6 py-3">
+            <label for="modules" class="form-label">Module</label>
+            <select id="modules" name="modules" class="form-select">
 
-            <option selected>Choose...</option>;
-            <?php
+              <option selected>Choose...</option>;
+              <?php
             $sql1 = "SELECT * FROM courses WHERE course_code = '" . $core['course_code'] . "'";
             $c = mysqli_query($conn, $sql1);
             // $proj = mysqli_fetch_assoc($p_data);
@@ -467,29 +495,29 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
               echo "<option>" . $module['module'] . "</option>";
             }
             ?>
-          </select>
-        </div>
-        <div class="col-md-6 py-3">
-          <label for="type" class="form-label">Type</label>
-          <select id="type" name="type" class="form-select">
+            </select>
+          </div>
+          <div class="col-md-6 py-3">
+            <label for="type" class="form-label">Type</label>
+            <select id="type" name="type" class="form-select">
 
-            <option selected>Choose...</option>         
-            <option>Assignment</option>  
-            <option>Quiz</option>   
-            
-          </select>
-        </div>
-        <div class="col-md-2 py-3">
-          <label for="date">Deadline:</label>
-          <input type="date" id="date" name="date">
-          
-        </div>
-        <div class="col-md-2 py-3">
-        <input type="file" name='myfile'>
-        </div>
+              <option selected>Choose...</option>
+              <option>Assignment</option>
+              <option>Quiz</option>
+
+            </select>
+          </div>
+          <div class="col-md-2 py-3">
+            <label for="date">Deadline:</label>
+            <input type="date" id="date" name="date">
+
+          </div>
+          <div class="col-md-2 py-3">
+            <input type="file" name='myfile'>
+          </div>
         </div>
 
-       
+
         <div class="col-12">
           <button type="submit" name="new_eval" id="new_eval" class="btn btn-primary">Submit</button>
         </div>
@@ -503,12 +531,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     <hr>
     <center>
-    <h5>Student Marks</h5>
+      <h5>Student Marks</h5>
     </center>
     <hr>
 
     <div class="container" style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
-   
+
       <table class="table" id="myTable">
         <thead>
           <tr>
@@ -518,11 +546,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             <th scope="col">Email</th>
             <th scope="col">Role</th>
             <th scope="col">Actions</th>
-            
+
           </tr>
         </thead>
         <tbody>
-        <?php
+          <?php
   
       $user = $_SESSION['username'];
   
@@ -547,12 +575,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   
   
       ?>
-        
-        
-        
+
+
+
         </tbody>
       </table>
-  </div>
+    </div>
   </div>
 
 
@@ -563,7 +591,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     edits = document.getElementsByClassName('edit');
     Array.from(edits).forEach((element) => {
       element.addEventListener("click", (e) => {
-        console.log("edit", );
+        console.log("edit",);
         tr = e.target.parentNode;
         username = tr.getElementsByTagName("h2")[0].innerText;
         email = tr.getElementsByTagName("h5")[0].innerText;
