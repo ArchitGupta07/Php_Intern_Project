@@ -213,6 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 					console.log(modules);
 					modules = JSON.parse(modules);
 					$('#modules').empty();
+          $('#modules').append('<option>Choose...</option>')
 					modules.forEach(function(module){
 						$('#modules').append('<option>' + module.module + '</option>')
 					})
@@ -220,6 +221,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 			})
 		})
 	</script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        // jQuery.noConflict();
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 
   <title>Document</title>
 
@@ -462,9 +470,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           <label for="type" class="form-label">Type</label>
           <select id="type" name="type" class="form-select">
 
-            <option selected>Choose...</option>;         
-            <option>Assignment</option>";   
-            <option>Quiz</option>";   
+            <option selected>Choose...</option>         
+            <option>Assignment</option>  
+            <option>Quiz</option>   
             
           </select>
         </div>
@@ -488,6 +496,60 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 
     </div>
+    <br>
+
+    <hr>
+    <center>
+    <h5>Student Marks</h5>
+    </center>
+    <hr>
+
+    <div class="container" style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
+   
+      <table class="table" id="myTable">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">First_Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+  
+      $user = $_SESSION['username'];
+  
+      $sql = "Select * from marks";
+      $data = mysqli_query($conn, $sql);
+  
+      while($prof = mysqli_fetch_assoc($data)){
+      echo " <tr>
+      <th scope='row'>" . $prof['uid'] ." </th>
+      <td>" . $prof['first_name'] . "</td>
+      <td>" . $prof['last_name'] . "</td>
+      <td>" . $prof['email'] . "</td>
+      <td>" . $prof['role'] . "</td>
+      <td>  <button class='edit' id= '".$prof['uid']."' href='/edit'>Edit</button> </td>
+      </tr>" ;
+  
+  
+      
+        
+      }
+  
+  
+  
+      ?>
+        
+        
+        
+        </tbody>
+      </table>
+  </div>
   </div>
 
 
