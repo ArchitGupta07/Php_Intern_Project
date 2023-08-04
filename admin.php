@@ -114,7 +114,8 @@ else{
 </div>
     
 <!-- ---------------------Table -------------------- -->
-
+<br>
+<br>
 <center>
   <h3>Edit Database</h3>
 </center>
@@ -178,7 +179,7 @@ else{
   <h3>Search Data</h3>
 </center>
 <hr>
-  <div class="container bg-secondary " style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px;">
+  <div class="container " style="border: 2px solid black ; border-radius: 6px; padding:20px; margin:20px; background-color: rgb(173, 80, 240);">
   <form action="/Php_Learning/admin.php" method="POST">
    
     <table class="table" id="myTable2">

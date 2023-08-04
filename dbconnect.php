@@ -13,7 +13,7 @@ if(!$conn){
   die("Sorry we failed to connect: ". mysqli_connect_errno());
 }
 else{
-  // echo "Connection was Successfull<br>"; 
+  // echo "Connection was Successfull<br>";
 
 }
 ?>

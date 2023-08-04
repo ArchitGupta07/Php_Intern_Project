@@ -103,15 +103,25 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $uid = $_POST['uidEdit'];
     $email = $_POST['emailEdit'];
     $mobile_no = $_POST['mobileEdit'];
+    $file_name = $_FILES['myfile']['name'];
+    echo $file_name;
+    $file_tmp_name = $_FILES['myfile']['tmp_name'];
 
-    $sql = "UPDATE `profile` SET `username` = '$username' , `email` = '$email' , `mobile_no` = '$mobile_no' WHERE `profile`.`uid` = $uid";
-    $res = mysqli_query($conn, $sql);
+    move_uploaded_file($file_tmp_name, "files/images/" . $file_name);
+
+    $sql = "UPDATE `profile` SET `username` = '$username' , `email` = '$email' , `mobile_no` = '$mobile_no',`profile_photo` = '$file_name' WHERE `profile`.`uid` = $uid";
+
+    $res1 = mysqli_query($conn, $sql);
 
     if ($user != $username) {
       header("location: login_admin.php ");
     } else {
       header("location: profile.php ");
     }
+
+
+//////////////////Course upload post button//////////////
+
   } elseif (isset($_POST['course_upload'])) {
     echo 'yes2';
 
@@ -130,6 +140,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $sql = "INSERT INTO `courses` (`course_code`, `module`, `session_no`, `title`, `creator`, `mode`, `date`, `down_pdf`) VALUES ('$course_code', '$module', '$session_no', '$title', '$user', '$mode', current_timestamp(), '$file_name')";
     $res = mysqli_query($conn, $sql);
 
+
+
+  //  -------------Assignment/quiz---------------///
 
   }elseif (isset($_POST['new_eval'])) {
     
@@ -322,7 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/Php_Learning/profile.php" method="POST">
+          <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" type="text" name="uidEdit" id="uidEdit">
             <div class="username">
               <label for="">username</label>
@@ -336,11 +349,17 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
               <label for="">mobile_no</label>
               <input type="text" name="mobileEdit" id="mobileEdit">
             </div>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <br>
+          <div>
+          <label for="myfile">Add Photo:</label>
+          <input type="file" name='myfile'>
+        </div>
+        <br>
+            <button type="submit"    class="btn btn-primary">Save changes</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
         </div>
       </div>
@@ -405,7 +424,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       </div>
 
       <div>
-        <div class="user-image"><img src="./files/images/arc.jpg" alt=""></div>
+        <div class="user-image">
+          <img src="./files/images/<?php echo $prof['profile_photo']; ?>" alt="">
+        </div>
         <!-- <img src="./files/images/arc.jpg" alt="Girl in a jacket" width="500" height="600"> -->
       </div>
 
