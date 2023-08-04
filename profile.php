@@ -1,7 +1,7 @@
 <?php
 
 require "dbconnect.php";
-require_once 'config.php';
+// require_once 'config.php';
 
 
 
