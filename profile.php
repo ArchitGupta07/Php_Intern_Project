@@ -335,7 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
+          <form action="/Php_Intern_Project/profile.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" type="text" name="uidEdit" id="uidEdit">
             <div class="username">
               <label for="">username</label>
@@ -439,7 +439,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     </center>
     <hr>
     <div class="container1 bg-info border rounded p-3" style="width: 600px; margin:auto">
-      <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
+      <form action="/Php_Intern_Project/profile.php" method="POST" enctype="multipart/form-data">
         <div class=" align-items justify-content-center">
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">Course Code</label>
@@ -480,7 +480,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <hr>
 
     <div class="container1 bg-info border rounded p-3" style="width: 600px; margin:auto">
-      <form action="/Php_Learning/profile.php" method="POST" enctype="multipart/form-data">
+      <form action="/Php_Intern_Project/profile.php" method="POST" enctype="multipart/form-data">
         <div class="wrap grid justify-content-center  p-3">
 
 
